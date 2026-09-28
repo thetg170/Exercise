@@ -1,0 +1,102 @@
+variable,raw_label_repr,count,pct
+Brand,'BMW',76773,7.639
+Brand,'Skoda',76762,7.638
+Brand,'Hyundai',76750,7.637
+Brand,'Ford',76694,7.631
+Brand,'Toyota',76630,7.625
+Brand,'Audi',76573,7.619
+Brand,'Honda',76542,7.616
+Brand,'Kia',76524,7.614
+Brand,'Mercedes',76492,7.611
+Brand,'Volkswagen',76441,7.606
+Brand,'Mahindra',76308,7.593
+Brand,'Tata',76297,7.592
+Brand,'Nissan',76174,7.58
+Brand,' Mercedes ',813,0.081
+Brand,' Nissan ',792,0.079
+Brand,' Skoda ',789,0.079
+Brand,' BMW ',788,0.078
+Brand,' Mahindra ',785,0.078
+Brand,' Tata ',778,0.077
+Brand,' Honda ',770,0.077
+Brand,' Kia ',769,0.077
+Brand,' Hyundai ',767,0.076
+Brand,' Toyota ',767,0.076
+Brand,' Ford ',745,0.074
+Brand,' Volkswagen ',744,0.074
+Brand,' Audi ',733,0.073
+Model,'Verna',26046,2.592
+Model,'Octavia',26008,2.588
+Model,'Camry',25976,2.585
+Model,'3 Series',25975,2.585
+Model,'Amaze',25950,2.582
+Model,'Figo',25942,2.581
+Model,'Kushaq',25939,2.581
+Model,'EcoSport',25922,2.579
+Model,'A4',25919,2.579
+Model,'i20',25880,2.575
+Model,'E-Class',25871,2.574
+Model,'Magnite',25850,2.572
+Model,'Carens',25819,2.569
+Model,'Virtus',25809,2.568
+Model,'Q3',25807,2.568
+Model,'X3',25806,2.568
+Model,'Bolero',25798,2.567
+Model,'Yaris',25789,2.566
+Model,'Harrier',25783,2.565
+Model,'X1',25780,2.565
+Model,'Punch',25757,2.563
+Model,'Sonet',25745,2.562
+Model,'Taigun',25737,2.561
+Model,'XUV700',25737,2.561
+Model,'Civic',25730,2.56
+Model,'Seltos',25729,2.56
+Model,'GLA',25722,2.559
+Model,'C-Class',25712,2.558
+Model,'Polo',25639,2.551
+Model,'City',25632,2.55
+Model,'Corolla',25632,2.55
+Model,'Slavia',25604,2.548
+Model,'Sunny',25592,2.546
+Model,'Creta',25591,2.546
+Model,'Q5',25580,2.545
+Model,'Endeavour',25575,2.545
+Model,'Scorpio',25558,2.543
+Model,'Nexon',25535,2.541
+Model,'Kicks',25524,2.54
+Fuel_Type,'Petrol',407577,40.555
+Fuel_Type,'Diesel',272056,27.07
+Fuel_Type,'CNG',90628,9.018
+Fuel_Type,'Unknown',78733,7.834
+Fuel_Type,'Electric',72513,7.215
+Fuel_Type,'Hybrid',63370,6.305
+Fuel_Type,'hybridd',3423,0.341
+Fuel_Type,' Diesel',3390,0.337
+Fuel_Type,'diesel ',3373,0.336
+Fuel_Type,'petrol',3351,0.333
+Fuel_Type,'PETROL',3317,0.33
+Fuel_Type,'electrik',3269,0.325
+Transmission,'Manual',600630,59.764
+Transmission,'Automatic',323985,32.237
+Transmission,'Unknown',80385,7.999
+Owner_Type,'First',602365,59.937
+Owner_Type,'Second',251715,25.046
+Owner_Type,'Third',100653,10.015
+Owner_Type,'Fourth+',50267,5.002
+Color,'Red',132535,13.188
+Color,'Blue',132306,13.165
+Color,'Black',132298,13.164
+Color,'White',132027,13.137
+Color,'Brown',131985,13.133
+Color,'Grey',131932,13.128
+Color,'Silver',131498,13.084
+Color,'Unknown',80419,8.002
+City,'Delhi',115999,11.542
+City,'Hyderabad',115854,11.528
+City,'Mumbai',115777,11.52
+City,'Pune',115588,11.501
+City,'Ahmedabad',115480,11.491
+City,'Bangalore',115471,11.49
+City,'Kolkata',115405,11.483
+City,'Chennai',114996,11.442
+City,'Unknown',80430,8.003

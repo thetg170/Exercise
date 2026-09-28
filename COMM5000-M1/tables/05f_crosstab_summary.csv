@@ -1,0 +1,9 @@
+row_var,col_var,max_row_pct_spread_pp
+Segment,Fuel_Type,0.081
+Segment,Transmission,0.12
+Segment,Owner_Type,0.093
+Segment,City,0.09
+Segment,Color,0.13
+Fuel_Type,Transmission,0.383
+Brand,Fuel_Type,1.041
+City,Fuel_Type,0.335

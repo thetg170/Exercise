@@ -1,0 +1,8 @@
+type,keyword,description
+AutoExec,Workbook_Open,Runs when the Excel Workbook is opened
+Suspicious,Run,May run an executable file or a system command
+Suspicious,Hex Strings,"Hex-encoded strings were detected, may be used to obfuscate strings (option --decode to see all)"
+Suspicious,Base64 Strings,"Base64-encoded strings were detected, may be used to obfuscate strings (option --decode to see all)"
+Hex String,2xQw,32785177
+Hex String,ih0(fS,696830286653
+Hex String,Pf('tY$,50662827745924

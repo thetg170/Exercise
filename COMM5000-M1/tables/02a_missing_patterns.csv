@@ -1,0 +1,9 @@
+Mileage_kmpl,Engine_CC,Horsepower,n_rows
+False,False,False,782497
+True,False,False,68243
+False,True,False,68078
+False,False,True,68004
+False,True,True,6031
+True,False,True,5853
+True,True,False,5779
+True,True,True,515

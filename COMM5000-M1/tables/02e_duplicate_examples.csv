@@ -1,0 +1,7 @@
+excel_row,Brand,Model,Year,Mileage_kmpl,Engine_CC,Horsepower,Fuel_Type,Transmission,Owner_Type,Color,City,Kms_Driven,Insurance_Valid,Service_History,Accidents,Tax_Paid,Number_of_Doors,Seats,Registration_Age,Car_Price
+5208, Audi ,A4,2022,20.0298486524664,1910.86861481476,160.763269283799,Diesel,Manual,First,Silver,Pune,32754,1,1,0,1,4,4,3,1961441.58195662
+346517, Audi ,A4,2022,20.0298486524664,1910.86861481476,160.763269283799,Diesel,Manual,First,Silver,Pune,32754,1,1,0,1,4,4,3,1961441.58195662
+91189, Audi ,Q3,2008,12.7783473190264,879.493242185339,,Diesel,Automatic,First,Silver,Hyderabad,110840,1,1,1,1,4,5,17,2544484.86136821
+165810, Audi ,Q3,2008,12.7783473190264,879.493242185339,,Diesel,Automatic,First,Silver,Hyderabad,110840,1,1,1,1,4,5,17,2544484.86136821
+39511, Audi ,Q3,2014,16.6350460009915,,,Petrol,Unknown,Second,Grey,Bangalore,189145,1,0,0,1,4,5,11,1869571.72238002
+53428, Audi ,Q3,2014,16.6350460009915,,,Petrol,Unknown,Second,Grey,Bangalore,189145,1,0,0,1,4,5,11,1869571.72238002

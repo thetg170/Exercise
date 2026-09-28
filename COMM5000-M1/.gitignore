@@ -1,0 +1,6 @@
+.venv/
+*.xlsm
+*.parquet
+data_interim.source.txt
+__pycache__/
+.DS_Store

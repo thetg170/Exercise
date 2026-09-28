@@ -1,0 +1,128 @@
+[load_raw] 1,005,000 dòng x 20 cột từ data_interim.parquet (0.1s)
+view 'all': n = 1,005,000
+view 'clean': n = 990,395
+view 'clean_nofloor': n = 874,592
+
+=== Car_Price vs log(Car_Price) ===
+         view  variable       n          mean      median  mean/median           std  skewness  kurtosis_excess
+          all Car_Price 1005000 1,012,896.960 758,908.320        1.335 1,141,644.936     6.991          116.466
+          all log_price 1005000        13.278      13.540        0.981         1.208    -0.730           -0.154
+        clean Car_Price  990395   966,822.951 753,706.371        1.283   874,331.122     2.056           21.125
+        clean log_price  990395        13.262      13.533        0.980         1.196    -0.785           -0.210
+clean_nofloor Car_Price  874592 1,088,217.668 852,711.349        1.276   860,023.668     2.181           24.661
+clean_nofloor log_price  874592        13.585      13.656        0.995         0.852    -0.536            0.264
+
+Mean = 1,012,897 > median = 758,908: mean cao hơn median 33.5% -> phân phối lệch phải
+Tỉ trọng listing có giá > mean: 36.142%
+
+=== Car_Price theo nhóm (view 'all') ===
+Segment           2 nhóm | median thấp nhất Non-luxury      581,505 | cao nhất Luxury        2,155,953 | max/min = 3.71
+Brand            13 nhóm | median thấp nhất Tata            450,583 | cao nhất Mercedes      2,402,908 | max/min = 5.33
+Fuel_Type         6 nhóm | median thấp nhất CNG             755,054 | cao nhất Hybrid          762,930 | max/min = 1.01
+Transmission      3 nhóm | median thấp nhất Automatic       758,097 | cao nhất Unknown         760,340 | max/min = 1.00
+Owner_Type        4 nhóm | median thấp nhất Second          758,599 | cao nhất Third           760,507 | max/min = 1.00
+Color             8 nhóm | median thấp nhất Silver          754,588 | cao nhất Brown           761,307 | max/min = 1.01
+City              9 nhóm | median thấp nhất Pune            755,896 | cao nhất Delhi           761,668 | max/min = 1.01
+Accidents         6 nhóm | median thấp nhất 5               392,983 | cao nhất 0               765,227 | max/min = 1.95
+Number_of_Doors   3 nhóm | median thấp nhất 5               758,438 | cao nhất 2               764,139 | max/min = 1.01
+Seats             4 nhóm | median thấp nhất 5               758,425 | cao nhất 7               760,610 | max/min = 1.00
+Insurance_Valid   2 nhóm | median thấp nhất 0               757,270 | cao nhất 1               759,231 | max/min = 1.00
+Service_History   2 nhóm | median thấp nhất 0               723,253 | cao nhất 1               770,614 | max/min = 1.07
+Tax_Paid          2 nhóm | median thấp nhất 1               758,696 | cao nhất 0               760,672 | max/min = 1.00
+Model            39 nhóm | median thấp nhất Harrier         447,509 | cao nhất E-Class       2,420,652 | max/min = 5.41
+
+Khác biệt median trong TỪNG segment (max/min giữa các nhóm):
+       variable    Segment  n_groups    min_median    max_median  max/min    argmin     argmax
+          Brand     Luxury         3 1,984,633.897 2,388,607.904    1.204      Audi   Mercedes
+          Brand Non-luxury        10   447,228.332   740,750.227    1.656      Tata Volkswagen
+          Model     Luxury         9 1,979,507.282 2,405,639.842    1.215        Q5    E-Class
+          Model Non-luxury        30   442,285.659   748,152.581    1.692   Harrier     Taigun
+      Fuel_Type     Luxury         5 2,131,313.524 2,150,340.996    1.009    Hybrid        CNG
+      Fuel_Type Non-luxury         5   572,166.519   579,565.196    1.013       CNG     Diesel
+   Transmission     Luxury         2 2,142,417.086 2,145,805.843    1.002    Manual  Automatic
+   Transmission Non-luxury         2   577,045.160   578,571.221    1.003 Automatic     Manual
+     Owner_Type     Luxury         4 2,134,714.514 2,158,996.456    1.011     Third    Fourth+
+     Owner_Type Non-luxury         4   576,642.509   578,975.725    1.004    Second      Third
+          Color     Luxury         7 2,131,566.229 2,165,280.891    1.016    Silver      Brown
+          Color Non-luxury         7   574,014.331   580,784.394    1.012    Silver        Red
+           City     Luxury         8 2,134,240.477 2,151,642.385    1.008 Hyderabad    Kolkata
+           City Non-luxury         8   575,136.348   581,037.261    1.010   Kolkata     Mumbai
+      Accidents     Luxury         6 2,000,099.213 2,658,703.453    1.329         4          5
+      Accidents Non-luxury         6   267,220.982   584,429.912    2.187         5          0
+Service_History     Luxury         2 2,109,006.195 2,155,797.335    1.022         0          1
+Service_History Non-luxury         2   540,977.837   589,881.211    1.090         0          1
+Insurance_Valid     Luxury         2 2,140,896.932 2,157,844.624    1.008         1          0
+Insurance_Valid Non-luxury         2   577,707.191   577,891.869    1.000         1          0
+       Tax_Paid     Luxury         2 2,142,624.726 2,143,730.648    1.001         0          1
+       Tax_Paid Non-luxury         2   577,389.558   577,784.598    1.001         0          1
+          Seats     Luxury         4 2,132,573.382 2,153,710.435    1.010         4          2
+          Seats Non-luxury         4   574,829.374   580,739.482    1.010         2          4
+Number_of_Doors     Luxury         3 2,140,129.721 2,144,769.976    1.002         2          5
+Number_of_Doors Non-luxury         3   577,561.630   580,112.727    1.004         5          2
+
+Median Car_Price theo Accidents x Segment (view 'clean'; vs_first_pct = % so với nhóm đầu):
+             size                 median            vs_first_pct           
+Segment    Luxury Non-luxury      Luxury Non-luxury       Luxury Non-luxury
+Accidents                                                                  
+0          169391     564889 2,150,940.1  584,429.9          0.0        0.0
+1           50985     168613 2,126,695.1  561,528.6         -1.1       -3.9
+2            7656      25278 2,102,018.7  537,235.9         -2.3       -8.1
+3             731       2617 2,113,833.9  495,896.4         -1.7      -15.1
+4              54        166 2,000,099.2  543,743.8         -7.0       -7.0
+5               3         12 2,658,703.5  267,221.0         23.6      -54.3
+
+Median Car_Price theo Service_History x Segment (view 'clean'; vs_first_pct = % so với nhóm đầu):
+                   size                 median            vs_first_pct           
+Segment          Luxury Non-luxury      Luxury Non-luxury       Luxury Non-luxury
+Service_History                                                                  
+0                 57342     189528 2,109,006.2  540,977.8          0.0        0.0
+1                171478     572047 2,155,797.3  589,881.2          2.2        9.0
+
+=== Luxury vs Non-luxury ===
+         view    Segment      n  pct_of_view         mean       median          std   CV       min          P10           Q1           Q3          P90           max  skewness  skew_log  pct_at_floor
+          all     Luxury 232172        23.10 2,263,044.81 2,155,953.23 1,551,251.33 0.69 50,000.00 1,034,681.50 1,506,585.13 2,818,146.82 3,334,728.49 37,885,997.53      8.34     -0.74          0.05
+          all Non-luxury 772828        76.90   637,329.14   581,504.67   601,180.88 0.94 50,000.00    50,000.00   231,352.01   925,050.45 1,226,126.62 16,183,316.06      6.16     -0.79         15.04
+        clean     Luxury 228820        23.10 2,158,606.61 2,143,643.63   903,697.81 0.42 50,000.00 1,031,075.33 1,499,809.36 2,798,125.08 3,297,677.74 34,305,029.61      2.46     -1.35          0.05
+        clean Non-luxury 761575        76.90   608,744.05   577,740.68   440,220.27 0.72 50,000.00    50,000.00   228,109.15   916,992.19 1,209,766.07 15,240,343.89      1.29     -0.86         15.19
+clean_nofloor     Luxury 228706        26.15 2,159,657.66 2,144,297.75   902,695.65 0.42 50,879.71 1,032,828.05 1,500,990.38 2,798,572.55 3,297,790.79 34,305,029.61      2.47     -1.20          0.00
+clean_nofloor Non-luxury 645886        73.85   708,824.47   674,813.88   403,199.88 0.57 50,000.86   206,099.94   398,089.77   979,167.27 1,251,437.89 15,240,343.89      1.69     -0.99          0.00
+  [all] Luxury/Non-luxury: median x3.71, mean x3.55; chênh median = 1,574,449
+  [clean] Luxury/Non-luxury: median x3.71, mean x3.55; chênh median = 1,565,903
+  [clean_nofloor] Luxury/Non-luxury: median x3.18, mean x3.05; chênh median = 1,469,484
+  [clean] % Non-luxury có giá > P10 của Luxury (1,031,075): 18.262%
+
+=== Quan hệ price với biến numeric THEO SEGMENT (view 'clean') ===
+   Segment                x      n  pearson_price  spearman_price  pearson_logprice  slope_price_per_unit  slope_logprice_per_unit  pct_change_per_unit
+    Luxury Registration_Age 228820        -0.3826         -0.3846           -0.4057          -47,985.6753                  -0.0277              -2.7351
+    Luxury       Kms_Driven 228820        -0.3678         -0.3748           -0.4128               -2.4058                  -0.0000              -0.0001
+    Luxury        Engine_CC 210764         0.0520          0.0496            0.0554              121.4773                   0.0001               0.0071
+    Luxury       Horsepower 210557         0.0617          0.0599            0.0652            1,521.6902                   0.0009               0.0874
+    Luxury     Mileage_kmpl 210478        -0.0013         -0.0020           -0.0009             -289.3304                  -0.0001              -0.0113
+    Luxury        Accidents 228820        -0.0175         -0.0160           -0.0182          -28,956.6165                  -0.0164              -1.6224
+    Luxury  Service_History 228820         0.0231          0.0234            0.0248           48,123.8734                   0.0282               2.8639
+Non-luxury Registration_Age 761575        -0.6888         -0.7128           -0.6809          -42,037.0043                  -0.1036              -9.8434
+Non-luxury       Kms_Driven 761575        -0.6382         -0.6905           -0.6744               -2.0310                  -0.0000              -0.0005
+Non-luxury        Engine_CC 700357         0.0881          0.0871            0.0840              100.3810                   0.0002               0.0239
+Non-luxury       Horsepower 700626         0.1051          0.1035            0.1005            1,259.0233                   0.0030               0.3004
+Non-luxury     Mileage_kmpl 700679         0.0030          0.0037            0.0036              331.8860                   0.0010               0.0992
+Non-luxury        Accidents 761575        -0.0254         -0.0240           -0.0245          -20,467.6659                  -0.0491              -4.7944
+Non-luxury  Service_History 761575         0.0413          0.0415            0.0399           42,002.4807                   0.1012              10.6499
+
+Độ dốc theo 1 năm tuổi và theo 10,000 km (view 'clean'):
+  Luxury    : tuổi +1 năm ->    -47,986 Rs (-2.74%/năm theo log) | +10,000 km ->    -24,058 Rs (-1.46% theo log)
+  Non-luxury: tuổi +1 năm ->    -42,037 Rs (-9.84%/năm theo log) | +10,000 km ->    -20,310 Rs (-5.21% theo log)
+  (view 'clean_nofloor' — bỏ giá sàn:)
+  Luxury    : tuổi +1 năm ->    -47,817 Rs (-2.70%/năm) | +10,000 km ->    -23,942 Rs (-1.43%)
+  Non-luxury: tuổi +1 năm ->    -35,707 Rs (-6.06%/năm) | +10,000 km ->    -18,690 Rs (-3.33%)
+
+Spearman(Car_Price, Kms_Driven) TRONG từng nhóm tuổi (view 'clean'), trung bình qua 25 nhóm tuổi:
+  Luxury    : mean = -0.109; min = -0.220 (tuổi 25); max = -0.011 (tuổi 1)
+  Non-luxury: mean = -0.234; min = -0.384 (tuổi 24); max = -0.020 (tuổi 1)
+
+Chỉ số median price (tuổi 1 = 100), view 'clean':
+Registration_Age     1     5     10    15    20    25
+Segment                                              
+Luxury            100.0  92.8  84.5  75.4  65.8  58.3
+Non-luxury        100.0  83.2  61.8  41.0  19.8   4.4
+
+Đã lưu hình: fig_06a..fig_06e

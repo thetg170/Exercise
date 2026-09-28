@@ -1,0 +1,5 @@
+definition,rows_in_dup_groups,extra_copies(would_drop),pct_extra
+"E1 exact (20 cột, nhãn gốc)",10000,5000,0.498
+E2 sau chuẩn hoá nhãn (20 cột),10000,5000,0.498
+E3 trùng mọi cột trừ Car_Price (nhãn chuẩn),10000,5000,0.498
+E4 chỉ trùng 5 biến continuous,10000,5000,0.498

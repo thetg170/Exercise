@@ -1,0 +1,13 @@
+part,bytes_uncompressed,bytes_compressed
+[Content_Types].xml,1359,389
+_rels/.rels,588,244
+xl/workbook.xml,2516,1076
+xl/_rels/workbook.xml.rels,961,287
+xl/worksheets/sheet1.xml,3320,985
+xl/worksheets/sheet2.xml,709743054,137929052
+xl/theme/theme1.xml,8721,1976
+xl/styles.xml,19975,2497
+xl/sharedStrings.xml,4857,1749
+xl/vbaProject.bin,31232,12862
+docProps/core.xml,625,343
+docProps/app.xml,792,389

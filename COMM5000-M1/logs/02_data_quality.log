@@ -1,0 +1,207 @@
+[load_raw] 1,005,000 dòng x 20 cột từ data_interim.parquet (0.1s)
+=== A. Missing values (NaN thật) ===
+              n_missing  pct_missing
+Mileage_kmpl      80390        7.999
+Engine_CC         80403        8.000
+Horsepower        80403        8.000
+Tổng ô trống: 241,196 / 20,100,000 ô (1.2%)
+Số dòng có >=1 NaN: 222,503 (22.14%)
+Phân bố số NaN / dòng: {0: 782497, 1: 204325, 2: 17663, 3: 515}
+Mẫu hình missing (True = thiếu):
+  Mileage_kmpl  Engine_CC  Horsepower  n_rows
+        False      False       False  782497
+         True      False       False   68243
+        False       True       False   68078
+        False      False        True   68004
+        False       True        True    6031
+         True      False        True    5853
+         True       True       False    5779
+         True       True        True     515
+
+% missing theo nhóm (range_pp = chênh lệch max–min, điểm %):
+   group_var  missing_col  overall_pct  min_group_pct  min_group  max_group_pct  max_group  range_pp
+        City Mileage_kmpl        7.999          7.861  Hyderabad          8.179    Unknown     0.318
+        City    Engine_CC        8.000          7.910  Hyderabad          8.087       Pune     0.177
+        City   Horsepower        8.000          7.866    Chennai          8.107     Mumbai     0.241
+       Brand Mileage_kmpl        7.999          7.880        Kia          8.145        BMW     0.264
+       Brand    Engine_CC        8.000          7.812        Kia          8.223      Honda     0.411
+       Brand   Horsepower        8.000          7.832   Mahindra          8.127     Nissan     0.295
+     Segment Mileage_kmpl        7.999          7.994 Non-luxury          8.014     Luxury     0.020
+     Segment    Engine_CC        8.000          7.887     Luxury          8.034 Non-luxury     0.148
+     Segment   Horsepower        8.000          7.980     Luxury          8.006 Non-luxury     0.027
+        Year Mileage_kmpl        7.999          7.660       2022          8.332       2004     0.672
+        Year    Engine_CC        8.000          7.782       2002          8.250       2022     0.468
+        Year   Horsepower        8.000          7.758       2015          8.234       2012     0.476
+   Fuel_Type Mileage_kmpl        7.999          7.882    Unknown          8.112     Hybrid     0.229
+   Fuel_Type    Engine_CC        8.000          7.870   Electric          8.077    Unknown     0.207
+   Fuel_Type   Horsepower        8.000          7.920   Electric          8.083    Unknown     0.163
+Transmission Mileage_kmpl        7.999          7.923    Unknown          8.038     Manual     0.115
+Transmission    Engine_CC        8.000          7.886    Unknown          8.031     Manual     0.146
+Transmission   Horsepower        8.000          7.867    Unknown          8.017     Manual     0.150
+  Owner_Type Mileage_kmpl        7.999          7.876      Third          8.029      First     0.153
+  Owner_Type    Engine_CC        8.000          7.919      Third          8.035     Second     0.116
+  Owner_Type   Horsepower        8.000          7.834    Fourth+          8.025      First     0.190
+
+Median Car_Price theo trạng thái missing:
+  Mileage_kmpl  thiếu: n=80,390 median=755,209 | không thiếu: n=924,610 median=759,271
+  Engine_CC     thiếu: n=80,403 median=753,962 | không thiếu: n=924,597 median=759,370
+  Horsepower    thiếu: n=80,403 median=760,534 | không thiếu: n=924,597 median=758,749
+
+=== B. 'Unknown' và các biến thể (tách khỏi NaN) ===
+    variable  NaN  exact_'Unknown'  unknown_variants_other_case_or_space  other_tokens(N/A,-,?,none,null)  empty_or_whitespace_only  has_leading_trailing_space  pct_unknown_total
+       Brand    0                0                                     0                                0                         0                       10040              0.000
+       Model    0                0                                     0                                0                         0                           0              0.000
+   Fuel_Type    0            78733                                     0                                0                         0                        6763              7.834
+Transmission    0            80385                                     0                                0                         0                           0              7.999
+  Owner_Type    0                0                                     0                                0                         0                           0              0.000
+       Color    0            80419                                     0                                0                         0                           0              8.002
+        City    0            80430                                     0                                0                         0                           0              8.003
+
+Số dòng có >=1 'Unknown' (trong ['Fuel_Type', 'Transmission', 'Color', 'City']): 283,648 (28.224%)
+Phân bố số 'Unknown' / dòng: {0: 721352, 1: 249283, 2: 32452, 3: 1872, 4: 41}
+Số dòng có >=1 NaN HOẶC >=1 'Unknown': 443,543 (44.134%) -> nếu xoá toàn bộ (listwise deletion) chỉ còn 561,457 dòng
+
+% 'Unknown' theo nhóm (range_pp = chênh lệch max–min):
+group_var  unknown_col  min_group_pct  max_group_pct  range_pp
+     City    Fuel_Type          7.619          7.954     0.335
+     City Transmission          7.836          8.130     0.294
+     City        Color          7.881          8.104     0.223
+    Brand    Fuel_Type          7.691          8.035     0.343
+    Brand Transmission          7.842          8.227     0.385
+    Brand        Color          7.846          8.128     0.281
+    Brand         City          7.813          8.151     0.337
+  Segment    Fuel_Type          7.831          7.845     0.014
+  Segment Transmission          7.971          8.091     0.120
+  Segment        Color          7.981          8.072     0.092
+  Segment         City          7.995          8.029     0.033
+     Year    Fuel_Type          7.582          8.083     0.501
+     Year Transmission          7.764          8.377     0.613
+     Year        Color          7.560          8.232     0.672
+     Year         City          7.806          8.210     0.404
+
+Số 0 / số âm trong biến numeric (giá trị vô nghĩa nếu biến phải > 0):
+        variable  n_zero  n_negative          min          max
+            Year       0           0  2000.000000 2.024000e+03
+    Mileage_kmpl       0           0     5.000000 3.628174e+01
+       Engine_CC       0           0   800.000000 3.362023e+03
+      Horsepower       0          32   -18.509982 2.902498e+02
+      Kms_Driven       0           0  5000.000000 4.368000e+06
+       Accidents  744978           0     0.000000 5.000000e+00
+ Number_of_Doors       0           0     2.000000 5.000000e+00
+           Seats       0           0     2.000000 7.000000e+00
+Registration_Age       0           0     1.000000 2.500000e+01
+       Car_Price       0           0 50000.000000 3.788600e+07
+
+=== C. Inconsistent category labels — bảng mapping ĐỀ XUẤT ===
+ variable raw_label_repr standard_label            rule  count
+    Brand   ' Mercedes '       Mercedes    R2 trim/case    813
+    Brand     ' Nissan '         Nissan    R2 trim/case    792
+    Brand      ' Skoda '          Skoda    R2 trim/case    789
+    Brand        ' BMW '            BMW    R2 trim/case    788
+    Brand   ' Mahindra '       Mahindra    R2 trim/case    785
+    Brand       ' Tata '           Tata    R2 trim/case    778
+    Brand      ' Honda '          Honda    R2 trim/case    770
+    Brand        ' Kia '            Kia    R2 trim/case    769
+    Brand    ' Hyundai '        Hyundai    R2 trim/case    767
+    Brand     ' Toyota '         Toyota    R2 trim/case    767
+    Brand       ' Ford '           Ford    R2 trim/case    745
+    Brand ' Volkswagen '     Volkswagen    R2 trim/case    744
+    Brand       ' Audi '           Audi    R2 trim/case    733
+Fuel_Type      'hybridd'         Hybrid R3 typo (fuzzy)   3423
+Fuel_Type      ' Diesel'         Diesel    R2 trim/case   3390
+Fuel_Type      'diesel '         Diesel    R2 trim/case   3373
+Fuel_Type       'petrol'         Petrol    R2 trim/case   3351
+Fuel_Type       'PETROL'         Petrol    R2 trim/case   3317
+Fuel_Type     'electrik'       Electric R3 typo (fuzzy)   3269
+
+Tóm tắt theo cột:
+               n_raw_labels  n_standard_labels  rows_affected  pct_rows_affected
+variable                                                                       
+Brand                   26                 13          10040              0.999
+City                     9                  9              0              0.000
+Color                    8                  8              0              0.000
+Fuel_Type               12                  6          20123              2.002
+Model                   39                 39              0              0.000
+Owner_Type               4                  4              0              0.000
+Transmission             3                  3              0              0.000
+
+Tác động tới Segment: Luxury theo nhãn gốc = 229,838 (22.869%); sau chuẩn hoá = 232,172 (23.102%); => 2,334 dòng luxury sẽ bị xếp nhầm vào Non-luxury nếu không TRIM Brand
+raw_label_repr standard_label  count
+         'BMW'            BMW  76773
+        'Audi'           Audi  76573
+    'Mercedes'       Mercedes  76492
+  ' Mercedes '       Mercedes    813
+       ' BMW '            BMW    788
+      ' Audi '           Audi    733
+
+=== D. Nhất quán Model–Brand ===
+Số Model: 39; Model gắn với >1 Brand: 0
+  Audi        -> ['A4', 'Q3', 'Q5']
+  BMW         -> ['3 Series', 'X1', 'X3']
+  Ford        -> ['EcoSport', 'Endeavour', 'Figo']
+  Honda       -> ['Amaze', 'City', 'Civic']
+  Hyundai     -> ['Creta', 'Verna', 'i20']
+  Kia         -> ['Carens', 'Seltos', 'Sonet']
+  Mahindra    -> ['Bolero', 'Scorpio', 'XUV700']
+  Mercedes    -> ['C-Class', 'E-Class', 'GLA']
+  Nissan      -> ['Kicks', 'Magnite', 'Sunny']
+  Skoda       -> ['Kushaq', 'Octavia', 'Slavia']
+  Tata        -> ['Harrier', 'Nexon', 'Punch']
+  Toyota      -> ['Camry', 'Corolla', 'Yaris']
+  Volkswagen  -> ['Polo', 'Taigun', 'Virtus']
+
+=== E. Duplicated records ===
+                                 definition  rows_in_dup_groups  extra_copies(would_drop)  pct_extra
+                E1 exact (20 cột, nhãn gốc)               10000                      5000      0.498
+             E2 sau chuẩn hoá nhãn (20 cột)               10000                      5000      0.498
+E3 trùng mọi cột trừ Car_Price (nhãn chuẩn)               10000                      5000      0.498
+             E4 chỉ trùng 5 biến continuous               10000                      5000      0.498
+Kích thước nhóm trùng (E1): {2: 5000}
+Ví dụ exact duplicates (E1), 3 cặp đầu, kèm số dòng Excel (= index + 2):
+ excel_row  Brand Model  Year  Mileage_kmpl   Engine_CC  Horsepower Fuel_Type Transmission Owner_Type  Color      City  Kms_Driven  Insurance_Valid  Service_History  Accidents  Tax_Paid  Number_of_Doors  Seats  Registration_Age    Car_Price
+      5208  Audi     A4  2022     20.029849 1910.868615  160.763269    Diesel       Manual      First Silver      Pune       32754                1                1          0         1                4      4                 3 1.961442e+06
+    346517  Audi     A4  2022     20.029849 1910.868615  160.763269    Diesel       Manual      First Silver      Pune       32754                1                1          0         1                4      4                 3 1.961442e+06
+     91189  Audi     Q3  2008     12.778347  879.493242         NaN    Diesel    Automatic      First Silver Hyderabad      110840                1                1          1         1                4      5                17 2.544485e+06
+    165810  Audi     Q3  2008     12.778347  879.493242         NaN    Diesel    Automatic      First Silver Hyderabad      110840                1                1          1         1                4      5                17 2.544485e+06
+     39511  Audi     Q3  2014     16.635046         NaN         NaN    Petrol      Unknown     Second   Grey Bangalore      189145                1                0          0         1                4      5                11 1.869572e+06
+     53428  Audi     Q3  2014     16.635046         NaN         NaN    Petrol      Unknown     Second   Grey Bangalore      189145                1                0          0         1                4      5                11 1.869572e+06
+Near-dup E3 mà KHÔNG phải trùng hoàn toàn: 0 dòng
+Near-dup E2 (chỉ trùng sau chuẩn hoá nhãn, không trùng nhãn gốc): 0 dòng
+Vị trí (dòng Excel) của bản sao thừa E1: min=8,603, median=564,727, max=1,004,834; % nằm sau dòng 1,000,001: 0.42%
+
+=== F. Kiểu dữ liệu & nhất quán nội tại ===
+Kiểu lưu trữ (từ 00): mọi ô numeric là số, mọi ô categorical là chuỗi; không có số lưu dạng text, không có công thức, không có ô lỗi.
+  Insurance_Valid: tập giá trị = [np.int64(0), np.int64(1)]
+  Service_History: tập giá trị = [np.int64(0), np.int64(1)]
+  Tax_Paid: tập giá trị = [np.int64(0), np.int64(1)]
+Year + Registration_Age: {2025: 1005000}
+  -> nhất quán ở 100% dòng; GIẢ ĐỊNH năm tham chiếu (năm listing/thu thập) = 2025
+  Year max = 2024 -> số dòng Year > năm tham chiếu: 0
+
+'Point mass' — 5 giá trị lặp nhiều nhất của biến continuous:
+    variable         value  count    pct  is_min  is_max
+Mileage_kmpl      5.000000    516  0.051    True   False
+Mileage_kmpl     23.592964      2  0.000   False   False
+Mileage_kmpl     22.630736      2  0.000   False   False
+Mileage_kmpl     22.809926      2  0.000   False   False
+Mileage_kmpl     22.164735      2  0.000   False   False
+   Engine_CC    800.000000  37028  3.684    True   False
+   Engine_CC   1513.157430      2  0.000   False   False
+   Engine_CC   1003.166668      2  0.000   False   False
+   Engine_CC   1889.931287      2  0.000   False   False
+   Engine_CC   1913.734269      2  0.000   False   False
+  Horsepower    100.927306      2  0.000   False   False
+  Horsepower    108.168075      2  0.000   False   False
+  Horsepower    197.427894      2  0.000   False   False
+  Horsepower    183.952574      2  0.000   False   False
+  Horsepower    165.002483      2  0.000   False   False
+  Kms_Driven 117600.000000     38  0.004   False   False
+  Kms_Driven 124080.000000     36  0.004   False   False
+  Kms_Driven 131670.000000     35  0.003   False   False
+  Kms_Driven 198000.000000     35  0.003   False   False
+  Kms_Driven 154560.000000     34  0.003   False   False
+   Car_Price  50000.000000 116375 11.580    True   False
+   Car_Price 400000.000000    185  0.018   False   False
+   Car_Price 250000.000000    182  0.018   False   False
+   Car_Price 150000.000000    171  0.017   False   False
+   Car_Price 350000.000000    167  0.017   False   False

@@ -1,0 +1,8 @@
+variable,n_raw_labels,n_standard_labels,rows_affected,pct_rows_affected
+Brand,26,13,10040,0.999
+City,9,9,0,0.0
+Color,8,8,0,0.0
+Fuel_Type,12,6,20123,2.002
+Model,39,39,0,0.0
+Owner_Type,4,4,0,0.0
+Transmission,3,3,0,0.0

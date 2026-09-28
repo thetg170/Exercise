@@ -1,0 +1,58 @@
+[load_raw] 1,005,000 dòng x 20 cột từ data_interim.parquet (0.1s)
+Data Issue Log: 14 vấn đề -> tables/09_data_issue_log.csv / .md
+
+#1 File chưa được randomize (macro Workbook_Open chưa chạy)
+   Bằng chứng: B6 trống = True; người lưu cuối: Fabio Franch. Macro sẽ ghi đè 5 cột bằng giá trị mô phỏng (Cholesky + Cornish-Fisher/lognormal).
+   Ảnh hưởng : Toàn bộ thống kê về Car_Price, Kms_Driven, Engine_CC, Horsepower, Mileage_kmpl.
+
+#2 Nhãn Brand có khoảng trắng thừa
+   Bằng chứng: 13 biến thể (vd. ' BMW '), 10,040 dòng (0.999%); 2,334 dòng Audi/BMW/Mercedes sẽ bị xếp nhầm Non-luxury nếu không TRIM.
+   Ảnh hưởng : Cỡ nhóm Luxury: 22.869% -> 23.102%.
+
+#3 Nhãn Fuel_Type không thống nhất (hoa/thường, khoảng trắng, typo)
+   Bằng chứng: 6 biến thể, 20,123 dòng (2.002%): trim/case 13,431 (' Diesel', 'diesel ', 'petrol', 'PETROL'); typo 6,692 ('hybridd'->Hybrid, 'electrik'->Electric).
+   Ảnh hưởng : Tần suất Fuel_Type chính xác; ảnh hưởng tới giá rất nhỏ (median theo Fuel trong từng segment chênh ≤ 1.3%).
+
+#4 Giá trị 'Unknown' trong biến categorical
+   Bằng chứng: Fuel_Type 7.834%, Transmission 7.999%, Color 8.002%, City 8.003%; 283,648 dòng (28.224%) có ≥1 'Unknown'; không có biến thể khác ('N/A', '-', ''); chênh % Unknown giữa các nhóm ≤ 0.67 điểm %; median giá chênh 0.26%.
+   Ảnh hưởng : Bảng tần suất/crosstab có thêm cột 'Unknown'; các biến này hầu như không liên quan tới giá.
+
+#5 Missing values (ô trống) ở biến numeric
+   Bằng chứng: Mileage_kmpl 80,390 (7.999%), Engine_CC 80,403 (8.0%), Horsepower 80,403 (8.0%); 222,503 dòng (22.14%) có ≥1 NaN; thiếu cả 3 cột: 515 dòng vs kỳ vọng nếu độc lập 515; chênh % missing giữa nhóm ≤ 0.67 điểm %; median giá chênh 0.30%.
+   Ảnh hưởng : Listwise deletion NaN + Unknown sẽ bỏ 443,543 dòng (44.134%) mà median giá gần như không đổi.
+
+#6 Exact duplicated records
+   Bằng chứng: 10,000 dòng thuộc 5,000 cặp trùng hoàn toàn; 5,000 bản sao thừa (0.498%); bỏ bản sao còn đúng 1,000,000 dòng; không có near-duplicate (trùng mọi cột trừ Car_Price).
+   Ảnh hưởng : Median giá thay đổi < 0.01%; n = 1,000,000.
+
+#7 Kms_Driven phi lý: km/năm vượt biên của phần thân dữ liệu
+   Bằng chứng: 99.042% dòng có Kms/Registration_Age trong [5,000; 25,000]; 9,623 dòng (0.958%) vượt 25,000 km/năm, gồm toàn bộ 3,908 dòng Kms > 1,000,000; giá các dòng này cao gấp 4.76 lần (median) xe cùng Model & tuổi; chiếm 81.516% outlier giá > 3×IQR.
+   Ảnh hưởng : Pearson(Car_Price, Kms_Driven): toàn bộ -0.074; chỉ bỏ Kms>1M -0.211; bỏ theo km/năm -0.335. Skewness giá 6.99 -> 2.06 (bỏ duplicates + implausible).
+
+#8 Horsepower ≤ 0
+   Bằng chứng: 32 dòng (0.003%), min = -18.51; median Engine_CC của các dòng này = 800 (đúng giá sàn).
+   Ảnh hưởng : Không đáng kể (0.003%).
+
+#9 Car_Price bị chặn sàn (censoring) tại giá trị min
+   Bằng chứng: 116,375 dòng (11.58%) có Car_Price = 50,000; Non-luxury 15.044% vs Luxury 0.049%; 55.234% xe Non-luxury 25 tuổi; tăng theo tuổi và Kms.
+   Ảnh hưởng : Nếu xoá: median Non-luxury 577,741 -> 674,814; tỉ số median Luxury/Non-luxury 3.71 -> 3.18; quan hệ giá–tuổi bị làm yếu.
+
+#10 Engine_CC và Mileage_kmpl bị chặn sàn
+   Bằng chứng: Engine_CC = 800: 37,028 dòng (4.005% giá trị có); Mileage_kmpl = 5: 516 dòng.
+   Ảnh hưởng : Mode của Engine_CC/Mileage_kmpl phản ánh giá sàn, không phải giá trị điển hình.
+
+#11 Registration_Age trùng thông tin với Year
+   Bằng chứng: Year + Registration_Age = 2025 ở 100.0% dòng (r = −1.000).
+   Ảnh hưởng : Không thể đưa cả hai vào cùng một mô hình hồi quy.
+
+#12 Multicollinearity giữa biến giải thích
+   Bằng chứng: r(Engine_CC, Horsepower) = 0.839; r(Registration_Age, Kms_Driven) = 0.642 (Spearman 0.813); median Kms ≈ 15,000 × tuổi.
+   Ảnh hưởng : Ảnh hưởng tới mô hình ở final report, không ảnh hưởng thống kê mô tả.
+
+#13 Giá cực cao nhưng có thể hợp lệ
+   Bằng chứng: 1,079 dòng > 3×IQR không vi phạm quy tắc nào; 85.728% là Luxury.
+   Ảnh hưởng : Mean Luxury nhạy với nhóm này; báo cáo median.
+
+#14 Phân bố mẫu đồng đều bất thường (tính đại diện)
+   Bằng chứng: Mỗi brand 7.66–7.72%; mỗi city (trừ Unknown) 11.44–11.54%; mỗi năm sản xuất 3.97–4.04%; Luxury = 23.102%.
+   Ảnh hưởng : Kết quả đúng cho mẫu này; khái quát hoá ra thị trường thật cần thận trọng.

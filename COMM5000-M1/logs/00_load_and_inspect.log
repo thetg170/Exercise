@@ -1,0 +1,103 @@
+=== (a) Các phần trong file .xlsm ===
+                      part  bytes_uncompressed  bytes_compressed
+       [Content_Types].xml                1359               389
+               _rels/.rels                 588               244
+           xl/workbook.xml                2516              1076
+xl/_rels/workbook.xml.rels                 961               287
+  xl/worksheets/sheet1.xml                3320               985
+  xl/worksheets/sheet2.xml           709743054         137929052
+       xl/theme/theme1.xml                8721              1976
+             xl/styles.xml               19975              2497
+      xl/sharedStrings.xml                4857              1749
+         xl/vbaProject.bin               31232             12862
+         docProps/core.xml                 625               343
+          docProps/app.xml                 792               389
+
+=== Danh sách sheet ===
+  sheet                 xml_part   dimension
+Dataset xl/worksheets/sheet1.xml       B3:S7
+   DATA xl/worksheets/sheet2.xml A1:T1005001
+Defined names: [('_xlnm._FilterDatabase', 'DATA!$O$1:$O$1005001'), ('_xleta.AVERAGE', '#NAME?')]
+
+=== (b) Sheet 'Dataset' (mô tả) ===
+Merged cells: ['B3:S3', 'B4:S4', 'B5:S5', 'B6:S6', 'B7:S7']
+--- B3 ---
+Dataset Information
+
+--- B4 ---
+This 2026 large-scale dataset contains information about over one million observations and 20 features describing various aspects of used cars in India (Stable Space, 2026). The original dataset was published at the following link: https://www.kaggle.com/datasets/sharmajicoder/used-car-price-prediction-dataset. The provided data are the only ones to be used. The original dataset contains realistic imperfections listed under: https://datasetsearch.research.google.com/search?src=2&amp;query=Used%20Car%20Price%20Prediction%20Dataset&amp;docid=L2cvMTFucWZmMDd5eg%3D%3D (Updated Jun 13, 2026). Missing values are addressed by the randomising script or via inclusion of "Unknown" labels.
+
+--- B5 ---
+Input variables:
+1.Brand: Manufacturer of the vehicle
+2.Model: Model name
+3.Year: Manufacturing year
+4.Mileage_kmpl: Fuel efficiency (km/l)
+5.Engine_CC: Engine displacement in cubic centimeters
+6.Horsepower: Engine power output
+7.Fuel_Type: Fuel category
+8.Transmission: Manual or Automatic
+9.Owner_Type: Ownership history
+10.Color: Vehicle color
+11.City: Registration city
+12.Kms_Driven: Total distance traveled
+13.Insurance_Valid: Insurance status
+14.Service_History: Availability of service records
+15.Accidents: Number of reported accidents
+16.Tax_Paid: Road tax payment status
+17.Number_of_Doors: Vehicle door count
+18.Seats: Seating capacity
+19.Registration_Age: Vehicle age since registration
+Output variable: Car_Price: Target variable, in Rupees
+
+--- B7 ---
+REFERENCE: Stable Space (2026). Used Car Price Prediction Dataset [Dataset]. https://www.kaggle.com/datasets/sharmajicoder/used-car-price-prediction-dataset. Last accessed: June 2026. MIT Licence
+
+Ô B6 có giá trị? False  (slide intro: B6 trống => randomization CHƯA được áp dụng)
+docProps/core: {'coreProperties': '', 'lastModifiedBy': 'Fabio Franch', 'created': '2026-06-28T10:25:06Z', 'modified': '2026-09-07T06:20:36Z'}
+
+=== (c) Macro / VBA (chỉ đọc, KHÔNG chạy) ===
+Có VBA macro? True
+  module: ThisWorkbook.cls     stream: VBA/ThisWorkbook          dòng code (không rỗng): 154
+  module: Sheet5.cls           stream: VBA/Sheet5                dòng code (không rỗng): 8
+  module: Sheet4.cls           stream: VBA/Sheet4                dòng code (không rỗng): 8
+      type        keyword                                                                                         description
+  AutoExec  Workbook_Open                                                              Runs when the Excel Workbook is opened
+Suspicious            Run                                                      May run an executable file or a system command
+Suspicious    Hex Strings    Hex-encoded strings were detected, may be used to obfuscate strings (option --decode to see all)
+Suspicious Base64 Strings Base64-encoded strings were detected, may be used to obfuscate strings (option --decode to see all)
+Hex String           2xQw                                                                                            32785177
+Hex String         ih0(fS                                                                                        696830286653
+Hex String        Pf('tY$                                                                                      50662827745924
+
+=== (d) Quét XML sheet DATA (stream theo khối) ===
+{'rows': '1,005,001', 'cells_shared_string': '7,035,020', 'cells_inline_string': '0', 'cells_formula_string': '0', 'cells_error': '0', 'cells_boolean': '0', 'formulas': '0', 'hidden_rows': '0', 'values': '19,858,824'} (4s)
+
+=== (e) Tốc độ đọc ===
+openpyxl: 50,000 dòng trong 2.7s -> ước tính ~0.9 phút cho toàn bộ
+calamine: 1,005,000 dòng x 20 cột trong 11.5s
+
+Kiểu dữ liệu pandas ngay sau khi đọc + kiểu Python thực tế trong từng cột:
+  Brand              str        {'str': 1005000}
+  Model              str        {'str': 1005000}
+  Year               int64      {'int': 1005000}
+  Mileage_kmpl       float64    {'float': 1005000}
+  Engine_CC          float64    {'float': 1005000}
+  Horsepower         float64    {'float': 1005000}
+  Fuel_Type          str        {'str': 1005000}
+  Transmission       str        {'str': 1005000}
+  Owner_Type         str        {'str': 1005000}
+  Color              str        {'str': 1005000}
+  City               str        {'str': 1005000}
+  Kms_Driven         int64      {'int': 1005000}
+  Insurance_Valid    int64      {'int': 1005000}
+  Service_History    int64      {'int': 1005000}
+  Accidents          int64      {'int': 1005000}
+  Tax_Paid           int64      {'int': 1005000}
+  Number_of_Doors    int64      {'int': 1005000}
+  Seats              int64      {'int': 1005000}
+  Registration_Age   int64      {'int': 1005000}
+  Car_Price          float64    {'float': 1005000}
+
+Đã lưu data_interim.parquet (41.8 MB) trong 0.4s
+Đọc lại parquet: 0.1s; khớp với dữ liệu đọc từ xlsm: True

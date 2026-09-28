@@ -1,0 +1,68 @@
+[load_raw] 1,005,000 dòng x 20 cột từ data_interim.parquet (0.1s)
+view 'all' n = 1,005,000; view 'clean' n = 990,395
+
+=== City (view 'clean') ===
+                n  pct_of_total  mean_price  median_price  pct_luxury  median_Luxury  median_Non-luxury
+City                                                                                                   
+Ahmedabad  113814         11.49  968,024.31    753,959.37       23.23   2,135,851.83         579,136.67
+Bangalore  113747         11.49  965,342.71    751,255.44       23.05   2,146,584.22         576,604.46
+Chennai    113362         11.45  966,389.22    753,481.07       23.13   2,139,573.96         577,555.07
+Delhi      114287         11.54  967,829.42    756,187.11       23.08   2,150,875.17         578,750.88
+Hyderabad  114158         11.53  965,209.47    754,123.81       23.03   2,134,240.48         578,557.70
+Kolkata    113777         11.49  966,890.18    752,153.19       23.07   2,151,642.38         575,136.35
+Mumbai     114079         11.52  969,100.62    756,563.08       23.16   2,140,529.66         581,037.26
+Pune       113928         11.50  964,352.30    750,335.04       23.04   2,145,697.96         576,491.31
+Unknown     79243          8.00  968,892.15    755,849.18       23.15   2,150,424.97         576,450.76
+Median price giữa các city (không tính Unknown): 750,335 – 756,563 (chênh 0.83%); % luxury: 23.03% – 23.23%
+
+=== Brand (view 'clean') ===
+                n  pct_of_total   mean_price  median_price
+Brand                                                     
+Mercedes    76182          7.69 2,393,731.92  2,388,607.90
+BMW         76383          7.71 2,091,054.03  2,087,018.41
+Audi        76255          7.70 1,991,372.36  1,984,633.90
+Volkswagen  76037          7.68   757,186.82    740,750.23
+Skoda       76434          7.72   712,411.85    696,931.68
+Kia         76195          7.69   710,070.48    692,866.98
+Honda       76197          7.69   621,797.26    597,538.37
+Toyota      76251          7.70   618,760.54    594,584.38
+Hyundai     76419          7.72   578,601.81    550,314.27
+Mahindra    75956          7.67   533,933.61    496,917.84
+Ford        76364          7.71   533,603.45    496,303.44
+Nissan      75823          7.66   532,291.32    496,176.23
+Tata        75899          7.66   487,936.39    447,228.33
+
+Chênh lệch median giữa các Model TRONG cùng Brand (max/min):
+                    min          max  max/min
+Brand                                        
+Volkswagen   727723.801   748152.581    1.028
+Tata         442285.659   451540.244    1.021
+Mercedes    2370146.724  2405639.842    1.015
+Honda        594818.726   601743.323    1.012
+Nissan       493381.332   498495.472    1.010
+Mahindra     495196.580   499558.622    1.009
+Audi        1979507.282  1992989.374    1.007
+Hyundai      548501.037   552258.956    1.007
+Kia          689837.264   694459.722    1.007
+Skoda        694508.375   698750.577    1.006
+BMW         2081408.627  2092501.474    1.005
+Ford         495302.778   497684.875    1.005
+Toyota       593819.589   595133.844    1.002
+Model Luxury có median thấp nhất = 1,979,507; Model Non-luxury có median cao nhất = 748,153 -> hai segment KHÔNG chồng lấn ở cấp Model
+
+=== Thời gian: Year & Registration_Age ===
+Số listing / năm sản xuất (view all): min 39,871 (2004) – max 40,563 (2019); CV = 0.0051 -> phân bố gần như đều
+Đường thẳng mô tả fit trên median price theo tuổi (mỗi tuổi 1 điểm):
+   Segment ages  slope_median_Rs_per_year  R2_linear_on_medians  slope_log_median_pct_per_year   median_age1  median_age20  median_age25
+    Luxury 1-20               -48,047.099                 0.997                         -2.120 2,715,831.739 1,786,548.054           NaN
+    Luxury 1-25               -47,724.629                 0.998                         -2.234 2,715,831.739           NaN 1,583,530.203
+Non-luxury 1-20               -48,071.533                 1.000                         -7.632 1,140,657.713   225,631.698           NaN
+Non-luxury 1-25               -47,358.212                 0.999                        -11.236 1,140,657.713           NaN    50,000.000
+Chênh lệch median Luxury − Non-luxury theo tuổi (Rupees): {1: '1,575,174', 5: '1,572,536', 10: '1,589,734', 15: '1,581,434', 20: '1,560,916', 25: '1,533,530'}
+
+Kms_Driven theo tuổi (view clean): median / tuổi = {1: '15,112', 5: '14,996', 10: '14,977', 20: '14,966', 25: '15,068'}
+Tuổi xe trung bình theo Owner_Type: {'First': 13.01, 'Fourth+': 13.0, 'Second': 13.01, 'Third': 13.0}
+Tuổi xe trung bình theo Accidents: {0: 13.01, 1: 12.99, 2: 13.0, 3: 13.2, 4: 13.78, 5: 14.93}
+Median Kms_Driven theo segment: {'Luxury': 165000.0, 'Non-luxury': 164787.0}
+
+Đã lưu hình: fig_07a..fig_07d

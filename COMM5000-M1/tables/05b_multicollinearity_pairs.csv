@@ -1,0 +1,5 @@
+var_1,var_2,pearson,spearman,flag
+Registration_Age,Year,-1.0,-1.0,MULTICOLLINEARITY (|r|>=0.7)
+Engine_CC,Horsepower,0.8393,0.8332,MULTICOLLINEARITY (|r|>=0.7)
+Registration_Age,Kms_Driven,0.6416,0.813,MULTICOLLINEARITY (|r|>=0.7)
+Year,Kms_Driven,-0.6416,-0.813,MULTICOLLINEARITY (|r|>=0.7)

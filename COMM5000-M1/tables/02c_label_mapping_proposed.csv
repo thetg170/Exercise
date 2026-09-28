@@ -1,0 +1,102 @@
+variable,raw_label,raw_label_repr,standard_label,rule,count
+Brand,BMW,'BMW',BMW,giữ nguyên,76773
+Brand,Skoda,'Skoda',Skoda,giữ nguyên,76762
+Brand,Hyundai,'Hyundai',Hyundai,giữ nguyên,76750
+Brand,Ford,'Ford',Ford,giữ nguyên,76694
+Brand,Toyota,'Toyota',Toyota,giữ nguyên,76630
+Brand,Audi,'Audi',Audi,giữ nguyên,76573
+Brand,Honda,'Honda',Honda,giữ nguyên,76542
+Brand,Kia,'Kia',Kia,giữ nguyên,76524
+Brand,Mercedes,'Mercedes',Mercedes,giữ nguyên,76492
+Brand,Volkswagen,'Volkswagen',Volkswagen,giữ nguyên,76441
+Brand,Mahindra,'Mahindra',Mahindra,giữ nguyên,76308
+Brand,Tata,'Tata',Tata,giữ nguyên,76297
+Brand,Nissan,'Nissan',Nissan,giữ nguyên,76174
+Brand, Mercedes ,' Mercedes ',Mercedes,R2 trim/case,813
+Brand, Nissan ,' Nissan ',Nissan,R2 trim/case,792
+Brand, Skoda ,' Skoda ',Skoda,R2 trim/case,789
+Brand, BMW ,' BMW ',BMW,R2 trim/case,788
+Brand, Mahindra ,' Mahindra ',Mahindra,R2 trim/case,785
+Brand, Tata ,' Tata ',Tata,R2 trim/case,778
+Brand, Honda ,' Honda ',Honda,R2 trim/case,770
+Brand, Kia ,' Kia ',Kia,R2 trim/case,769
+Brand, Hyundai ,' Hyundai ',Hyundai,R2 trim/case,767
+Brand, Toyota ,' Toyota ',Toyota,R2 trim/case,767
+Brand, Ford ,' Ford ',Ford,R2 trim/case,745
+Brand, Volkswagen ,' Volkswagen ',Volkswagen,R2 trim/case,744
+Brand, Audi ,' Audi ',Audi,R2 trim/case,733
+Model,Verna,'Verna',Verna,giữ nguyên,26046
+Model,Octavia,'Octavia',Octavia,giữ nguyên,26008
+Model,Camry,'Camry',Camry,giữ nguyên,25976
+Model,3 Series,'3 Series',3 Series,giữ nguyên,25975
+Model,Amaze,'Amaze',Amaze,giữ nguyên,25950
+Model,Figo,'Figo',Figo,giữ nguyên,25942
+Model,Kushaq,'Kushaq',Kushaq,giữ nguyên,25939
+Model,EcoSport,'EcoSport',EcoSport,giữ nguyên,25922
+Model,A4,'A4',A4,giữ nguyên,25919
+Model,i20,'i20',i20,giữ nguyên,25880
+Model,E-Class,'E-Class',E-Class,giữ nguyên,25871
+Model,Magnite,'Magnite',Magnite,giữ nguyên,25850
+Model,Carens,'Carens',Carens,giữ nguyên,25819
+Model,Virtus,'Virtus',Virtus,giữ nguyên,25809
+Model,Q3,'Q3',Q3,giữ nguyên,25807
+Model,X3,'X3',X3,giữ nguyên,25806
+Model,Bolero,'Bolero',Bolero,giữ nguyên,25798
+Model,Yaris,'Yaris',Yaris,giữ nguyên,25789
+Model,Harrier,'Harrier',Harrier,giữ nguyên,25783
+Model,X1,'X1',X1,giữ nguyên,25780
+Model,Punch,'Punch',Punch,giữ nguyên,25757
+Model,Sonet,'Sonet',Sonet,giữ nguyên,25745
+Model,Taigun,'Taigun',Taigun,giữ nguyên,25737
+Model,XUV700,'XUV700',XUV700,giữ nguyên,25737
+Model,Civic,'Civic',Civic,giữ nguyên,25730
+Model,Seltos,'Seltos',Seltos,giữ nguyên,25729
+Model,GLA,'GLA',GLA,giữ nguyên,25722
+Model,C-Class,'C-Class',C-Class,giữ nguyên,25712
+Model,Polo,'Polo',Polo,giữ nguyên,25639
+Model,City,'City',City,giữ nguyên,25632
+Model,Corolla,'Corolla',Corolla,giữ nguyên,25632
+Model,Slavia,'Slavia',Slavia,giữ nguyên,25604
+Model,Sunny,'Sunny',Sunny,giữ nguyên,25592
+Model,Creta,'Creta',Creta,giữ nguyên,25591
+Model,Q5,'Q5',Q5,giữ nguyên,25580
+Model,Endeavour,'Endeavour',Endeavour,giữ nguyên,25575
+Model,Scorpio,'Scorpio',Scorpio,giữ nguyên,25558
+Model,Nexon,'Nexon',Nexon,giữ nguyên,25535
+Model,Kicks,'Kicks',Kicks,giữ nguyên,25524
+Fuel_Type,Petrol,'Petrol',Petrol,giữ nguyên,407577
+Fuel_Type,Diesel,'Diesel',Diesel,giữ nguyên,272056
+Fuel_Type,CNG,'CNG',CNG,giữ nguyên,90628
+Fuel_Type,Unknown,'Unknown',Unknown,giữ nguyên,78733
+Fuel_Type,Electric,'Electric',Electric,giữ nguyên,72513
+Fuel_Type,Hybrid,'Hybrid',Hybrid,giữ nguyên,63370
+Fuel_Type,hybridd,'hybridd',Hybrid,R3 typo (fuzzy),3423
+Fuel_Type, Diesel,' Diesel',Diesel,R2 trim/case,3390
+Fuel_Type,diesel ,'diesel ',Diesel,R2 trim/case,3373
+Fuel_Type,petrol,'petrol',Petrol,R2 trim/case,3351
+Fuel_Type,PETROL,'PETROL',Petrol,R2 trim/case,3317
+Fuel_Type,electrik,'electrik',Electric,R3 typo (fuzzy),3269
+Transmission,Manual,'Manual',Manual,giữ nguyên,600630
+Transmission,Automatic,'Automatic',Automatic,giữ nguyên,323985
+Transmission,Unknown,'Unknown',Unknown,giữ nguyên,80385
+Owner_Type,First,'First',First,giữ nguyên,602365
+Owner_Type,Second,'Second',Second,giữ nguyên,251715
+Owner_Type,Third,'Third',Third,giữ nguyên,100653
+Owner_Type,Fourth+,'Fourth+',Fourth+,giữ nguyên,50267
+Color,Red,'Red',Red,giữ nguyên,132535
+Color,Blue,'Blue',Blue,giữ nguyên,132306
+Color,Black,'Black',Black,giữ nguyên,132298
+Color,White,'White',White,giữ nguyên,132027
+Color,Brown,'Brown',Brown,giữ nguyên,131985
+Color,Grey,'Grey',Grey,giữ nguyên,131932
+Color,Silver,'Silver',Silver,giữ nguyên,131498
+Color,Unknown,'Unknown',Unknown,giữ nguyên,80419
+City,Delhi,'Delhi',Delhi,giữ nguyên,115999
+City,Hyderabad,'Hyderabad',Hyderabad,giữ nguyên,115854
+City,Mumbai,'Mumbai',Mumbai,giữ nguyên,115777
+City,Pune,'Pune',Pune,giữ nguyên,115588
+City,Ahmedabad,'Ahmedabad',Ahmedabad,giữ nguyên,115480
+City,Bangalore,'Bangalore',Bangalore,giữ nguyên,115471
+City,Kolkata,'Kolkata',Kolkata,giữ nguyên,115405
+City,Chennai,'Chennai',Chennai,giữ nguyên,114996
+City,Unknown,'Unknown',Unknown,giữ nguyên,80430

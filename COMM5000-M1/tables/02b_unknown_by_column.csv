@@ -1,0 +1,8 @@
+variable,NaN,exact_'Unknown',unknown_variants_other_case_or_space,"other_tokens(N/A,-,?,none,null)",empty_or_whitespace_only,has_leading_trailing_space,pct_unknown_total
+Brand,0,0,0,0,0,10040,0.0
+Model,0,0,0,0,0,0,0.0
+Fuel_Type,0,78733,0,0,0,6763,7.834
+Transmission,0,80385,0,0,0,0,7.999
+Owner_Type,0,0,0,0,0,0,0.0
+Color,0,80419,0,0,0,0,8.002
+City,0,80430,0,0,0,0,8.003

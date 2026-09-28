@@ -1,0 +1,43 @@
+[load_raw] 1,005,000 dòng x 20 cột từ data_interim.parquet (0.1s)
+=== Phân bố số listing (view all) ===
+    variable  n_groups    largest  largest_pct smallest  smallest_pct  max/min_excl_Unknown  CV_counts_excl_Unknown
+     Segment         2 Non-luxury       76.898   Luxury        23.102                 3.329                  0.7608
+       Brand        13        BMW        7.718   Nissan         7.658                 1.008                  0.0024
+       Model        39      Verna        2.592    Kicks         2.540                 1.020                  0.0056
+        City         9      Delhi       11.542  Unknown         8.003                 1.009                  0.0027
+        Year        25       2019        4.036     2004         3.967                 1.017                  0.0051
+   Fuel_Type         6     Petrol       41.218   Hybrid         6.646                 6.202                  0.8370
+Transmission         3     Manual       59.764  Unknown         7.999                 1.854                  0.4231
+  Owner_Type         4      First       59.937  Fourth+         5.002                11.983                  0.9920
+       Color         8        Red       13.188  Unknown         8.002                 1.008                  0.0025
+
+=== Missing / Unknown có liên quan tới giá không? (median Car_Price, view all) ===
+       flag    Segment  n_flagged  pct_flagged  median_flagged  median_complete  diff_pct  mean_age_flagged  mean_age_complete
+    has_nan     Luxury      51153       22.032   2,144,476.832    2,159,461.499    -0.694            13.051             13.011
+    has_nan Non-luxury     171350       22.172     580,371.492      581,859.122    -0.256            13.003             12.999
+has_unknown     Luxury      65970       28.414   2,151,648.268    2,157,405.048    -0.267            13.070             13.000
+has_unknown Non-luxury     217678       28.166     580,971.136      581,769.485    -0.137            13.002             12.999
+
+=== So sánh kịch bản (trước/sau) ===
+scenario                        S0 gốc  S1 −duplicates  S2 −dup −implausible (đề xuất)  S2b −dup −Kms>1M (Guide)  S3 = S2 −NaN/Unknown (listwise)  S4 = S2 −giá sàn
+n                        1,005,000.000   1,000,000.000                     990,395.000               996,113.000                      553,228.000       874,592.000
+pct_retained                   100.000          99.502                          98.547                    99.116                           55.048            87.024
+pct_luxury                      23.102          23.104                          23.104                    23.104                           23.099            26.150
+mean_age                        13.004          13.005                          13.005                    12.984                           12.995            11.954
+pct_age_ge_20                   24.010          24.013                          24.018                    23.927                           23.953            17.962
+pct_non_luxury_age_ge_20        24.009          24.010                          24.015                    23.925                           23.951            15.828
+mean_price               1,012,896.960   1,012,877.111                     966,822.951             1,000,876.408                      967,201.639     1,088,217.668
+median_price               758,908.320     758,960.461                     753,706.371               757,825.716                      753,859.166       852,711.349
+skew_price                       6.991           6.976                           2.056                     6.530                            2.015             2.181
+median_luxury            2,155,953.235   2,155,975.647                   2,143,643.629             2,151,172.289                    2,147,936.846     2,144,297.745
+median_non_luxury          581,504.665     581,474.793                     577,740.680               580,924.630                      578,511.298       674,813.876
+ratio_median_lux_non             3.708           3.708                           3.710                     3.703                            3.713             3.178
+spearman_price_age              -0.490          -0.490                          -0.493                    -0.494                           -0.493            -0.365
+pearson_price_kms               -0.074          -0.074                          -0.335                    -0.211                           -0.336            -0.212
+spearman_price_kms              -0.454          -0.454                          -0.478                    -0.463                           -0.479            -0.347
+max_city_share_pct              11.542          11.542                          11.540                    11.539                           12.592            11.532
+pct_floor_price                 11.580          11.582                          11.693                    11.627                           11.688             0.000
+
+% Non-luxury ở tuổi 25 theo kịch bản: {'S0 gốc': 3.99, 'S1 −duplicates': 3.99, 'S2 −dup −implausible (đề xuất)': 3.99, 'S2b −dup −Kms>1M (Guide)': 3.97, 'S3 = S2 −NaN/Unknown (listwise)': 3.99, 'S4 = S2 −giá sàn': 2.08}
+
+Đã lưu hình: fig_08a, fig_08b

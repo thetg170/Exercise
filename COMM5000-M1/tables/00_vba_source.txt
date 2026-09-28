@@ -1,0 +1,213 @@
+'==== ThisWorkbook.cls (VBA/ThisWorkbook) ====
+Attribute VB_Name = "ThisWorkbook"
+Attribute VB_Base = "0{00020819-0000-0000-C000-000000000046}"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+Attribute VB_TemplateDerived = False
+Attribute VB_Customizable = True
+' Author: Fabio Franch, Ph.D.
+' Please Note: This script was created for this application and is not intended for reuse elsewhere. If you would like to use, modify, or adapt any part of this script, please obtain approval from the author first.
+
+
+Private Sub Workbook_Open()
+    Dim randomizationMessage As String
+    Dim currentTime As String
+
+    currentTime = Format(Now, "yyyy-mm-dd hh:mm:ss")
+
+    randomizationMessage = "Data randomisation was applied for university assessment purposes on " & currentTime & ". The randomised data in this Excel file likely differs from the original. DO NOT DELETE THIS TEXT."
+
+    If ThisWorkbook.Sheets("Dataset").Range("B6").Value = "" Then
+        RandomizeData
+        ThisWorkbook.Sheets("Dataset").Range("B6").Value = randomizationMessage
+    End If
+End Sub
+
+
+Sub RandomizeData()
+    Dim ws As Worksheet
+    Dim rngD As Range, rngE As Range, rngF As Range, rngL As Range, rngT As Range
+    Dim arrD As Variant, arrE As Variant, arrF As Variant, arrL As Variant, arrT As Variant
+    Dim n As Long, i As Long, j As Integer, k As Integer
+
+    Dim corr(1 To 5, 1 To 5) As Double
+    Dim chol(1 To 5, 1 To 5) As Double
+    Dim z0(1 To 5) As Double, zc(1 To 5) As Double
+
+    Dim meanArr(1 To 5) As Double, stdArr(1 To 5) As Double
+    Dim skewArr(1 To 5) As Double, kurtArr(1 To 5) As Double
+    Dim isLognormal(1 To 5) As Boolean
+    Dim muLN(1 To 5) As Double, sigmaLN(1 To 5) As Double
+    Dim sigma2 As Double
+
+    Randomize
+
+    Set ws = ThisWorkbook.Sheets("DATA")
+    Set rngD = ws.Range("D2:D1005001")
+    Set rngE = ws.Range("E2:E1005001")
+    Set rngF = ws.Range("F2:F1005001")
+    Set rngL = ws.Range("L2:L1005001")
+    Set rngT = ws.Range("T2:T1005001")
+
+    arrD = rngD.Value
+    arrE = rngE.Value
+    arrF = rngF.Value
+    arrL = rngL.Value
+    arrT = rngT.Value
+
+    ' --- Correlation matrix, order: D, E, F, L, T ---
+    corr(1, 1) = 1:            corr(1, 2) = 0.000153516: corr(1, 3) = 0.000298892:  corr(1, 4) = 0.001273341:  corr(1, 5) = 0.000137335
+    corr(2, 1) = 0.000153516:  corr(2, 2) = 1:           corr(2, 3) = 0.839272728:  corr(2, 4) = -0.00091129: corr(2, 5) = 0.03734854
+    corr(3, 1) = 0.000298892:  corr(3, 2) = 0.839272728: corr(3, 3) = 1:            corr(3, 4) = -0.0000196483: corr(3, 5) = 0.044592419
+    corr(4, 1) = 0.001273341:  corr(4, 2) = -0.00091129: corr(4, 3) = -0.0000196483: corr(4, 4) = 1:           corr(4, 5) = -0.073869582
+    corr(5, 1) = 0.000137335:  corr(5, 2) = 0.03734854:  corr(5, 3) = 0.044592419:  corr(5, 4) = -0.073869582: corr(5, 5) = 1
+
+    CholeskyDecompose corr, chol, 5
+
+    ' --- Marginal parameters ---
+    ' 1=D, 2=E, 3=F : Cornish-Fisher (mild skew/kurtosis)
+    meanArr(1) = 18.00079389:   stdArr(1) = 3.99064001:   skewArr(1) = 0.00443432:    kurtArr(1) = -0.014989532:  isLognormal(1) = False
+    meanArr(2) = 1506.125258:   stdArr(2) = 386.2926094:  skewArr(2) = 0.193192543:   kurtArr(2) = -0.327851773:  isLognormal(2) = False
+    meanArr(3) = 120.5226296:   stdArr(3) = 36.80509567:  skewArr(3) = 0.110615819:   kurtArr(3) = -0.165080859:  isLognormal(3) = False
+    ' 4=L, 5=T : Lognormal (extreme skew/kurtosis)
+    meanArr(4) = 202844.6404:   stdArr(4) = 175602.3723:  isLognormal(4) = True
+    meanArr(5) = 1014056.925:   stdArr(5) = 1144501.894:  isLognormal(5) = True
+
+    For k = 4 To 5
+        sigma2 = Log(1 + (stdArr(k) / meanArr(k)) ^ 2)
+        sigmaLN(k) = Sqr(sigma2)
+        muLN(k) = Log(meanArr(k)) - sigma2 / 2
+    Next k
+
+    n = UBound(arrD, 1)
+
+    For i = 1 To n
+        ' 5 independent standard normal draws
+        For k = 1 To 5
+            z0(k) = NormSInv_VBA(1 - Rnd())
+        Next k
+
+        ' Correlate via Cholesky factor: zc = chol * z0
+        For k = 1 To 5
+            zc(k) = 0
+            For j = 1 To k
+                zc(k) = zc(k) + chol(k, j) * z0(j)
+            Next j
+        Next k
+
+        ' Transform each correlated normal into its own marginal
+        arrD(i, 1) = TransformCornishFisher(zc(1), meanArr(1), stdArr(1), skewArr(1), kurtArr(1))
+        arrE(i, 1) = TransformCornishFisher(zc(2), meanArr(2), stdArr(2), skewArr(2), kurtArr(2))
+        arrF(i, 1) = TransformCornishFisher(zc(3), meanArr(3), stdArr(3), skewArr(3), kurtArr(3))
+        arrL(i, 1) = Exp(muLN(4) + sigmaLN(4) * zc(4))
+        arrT(i, 1) = Exp(muLN(5) + sigmaLN(5) * zc(5))
+    Next i
+
+    rngD.Value = arrD
+    rngE.Value = arrE
+    rngF.Value = arrF
+    rngL.Value = arrL
+    rngT.Value = arrT
+
+End Sub
+
+
+Function TransformCornishFisher(ByVal z As Double, ByVal meanValue As Double, ByVal stdDevValue As Double, ByVal skewness As Double, ByVal kurtosis As Double) As Double
+    Dim zSquared As Double, zCubed As Double, x As Double, randomValue As Double
+
+    zSquared = z ^ 2
+    zCubed = z ^ 3
+
+    x = z + (skewness / 6) * (zSquared - 1) + (kurtosis - 3) / 24 * (zCubed - 3 * z) - skewness ^ 2 / 36 * (2 * zCubed - 5 * z)
+
+    randomValue = meanValue + stdDevValue * x
+    If randomValue < 0 Then randomValue = 0
+
+    TransformCornishFisher = randomValue
+End Function
+
+
+Function NormSInv_VBA(ByVal p As Double) As Double
+    ' Peter Acklam's rational approximation of the inverse standard normal CDF.
+    ' Accurate to ~1.15e-9. Avoids Application.WorksheetFunction, which can be
+    ' unavailable for a brief moment right after the workbook opens (cold start),
+    ' causing an intermittent Run-time error 1004 on NormSInv.
+    Dim a1 As Double, a2 As Double, a3 As Double, a4 As Double, a5 As Double, a6 As Double
+    Dim b1 As Double, b2 As Double, b3 As Double, b4 As Double, b5 As Double
+    Dim c1 As Double, c2 As Double, c3 As Double, c4 As Double, c5 As Double, c6 As Double
+    Dim d1 As Double, d2 As Double, d3 As Double, d4 As Double
+    Dim pLow As Double, pHigh As Double
+    Dim q As Double, r As Double
+
+    a1 = -39.6968302866538:  a2 = 220.946098424521:  a3 = -275.928510446969
+    a4 = 138.357751867269:   a5 = -30.6647980661472: a6 = 2.50662827745924
+    b1 = -54.4760987982241:  b2 = 161.585836858041:  b3 = -155.698979859887
+    b4 = 66.8013118877197:   b5 = -13.2806815528857
+    c1 = -7.78489400243029E-03: c2 = -0.322396458041136: c3 = -2.40075827716184
+    c4 = -2.54973253934373:    c5 = 4.37466414146497:   c6 = 2.93816398269878
+    d1 = 7.78469570904146E-03: d2 = 0.32246712907004:   d3 = 2.445134137143
+    d4 = 3.75440866190742
+
+    pLow = 0.02425
+    pHigh = 1 - pLow
+
+    If p < pLow Then
+        q = Sqr(-2 * Log(p))
+        NormSInv_VBA = (((((c1 * q + c2) * q + c3) * q + c4) * q + c5) * q + c6) / _
+                       ((((d1 * q + d2) * q + d3) * q + d4) * q + 1)
+    ElseIf p <= pHigh Then
+        q = p - 0.5
+        r = q * q
+        NormSInv_VBA = (((((a1 * r + a2) * r + a3) * r + a4) * r + a5) * r + a6) * q / _
+                       (((((b1 * r + b2) * r + b3) * r + b4) * r + b5) * r + 1)
+    Else
+        q = Sqr(-2 * Log(1 - p))
+        NormSInv_VBA = -(((((c1 * q + c2) * q + c3) * q + c4) * q + c5) * q + c6) / _
+                         ((((d1 * q + d2) * q + d3) * q + d4) * q + 1)
+    End If
+End Function
+
+
+Sub CholeskyDecompose(A() As Double, L() As Double, n As Integer)
+    ' Standard Cholesky-Banachiewicz decomposition: A = L * L^T
+    Dim i As Integer, j As Integer, k As Integer
+    Dim total As Double
+
+    For i = 1 To n
+        For j = 1 To i
+            total = A(i, j)
+            For k = 1 To j - 1
+                total = total - L(i, k) * L(j, k)
+            Next k
+            If i = j Then
+                L(i, i) = Sqr(total)
+            Else
+                L(i, j) = total / L(j, j)
+            End If
+        Next j
+    Next i
+End Sub
+
+
+'==== Sheet5.cls (VBA/Sheet5) ====
+Attribute VB_Name = "Sheet5"
+Attribute VB_Base = "0{00020820-0000-0000-C000-000000000046}"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+Attribute VB_TemplateDerived = False
+Attribute VB_Customizable = True
+
+'==== Sheet4.cls (VBA/Sheet4) ====
+Attribute VB_Name = "Sheet4"
+Attribute VB_Base = "0{00020820-0000-0000-C000-000000000046}"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = False
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = True
+Attribute VB_TemplateDerived = False
+Attribute VB_Customizable = True
+

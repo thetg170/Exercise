@@ -1,0 +1,4 @@
+variable,floor_value,n_rows,pct,pct_in_Luxury,pct_in_Non-luxury,next_value_above_floor
+Car_Price,50000.0,116375,11.58,0.049,15.044,50000.8623993481
+Engine_CC,800.0,37028,4.005,3.697,3.681,800.007800558769
+Mileage_kmpl,5.0,516,0.056,0.044,0.053,5.00533749403924

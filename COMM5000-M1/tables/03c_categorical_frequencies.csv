@@ -1,0 +1,186 @@
+variable,labels,label,count,pct,rare_lt_1pct
+Brand,standardised,BMW,77561,7.718,False
+Brand,standardised,Skoda,77551,7.717,False
+Brand,standardised,Hyundai,77517,7.713,False
+Brand,standardised,Ford,77439,7.705,False
+Brand,standardised,Toyota,77397,7.701,False
+Brand,standardised,Honda,77312,7.693,False
+Brand,standardised,Audi,77306,7.692,False
+Brand,standardised,Mercedes,77305,7.692,False
+Brand,standardised,Kia,77293,7.691,False
+Brand,standardised,Volkswagen,77185,7.68,False
+Brand,standardised,Mahindra,77093,7.671,False
+Brand,standardised,Tata,77075,7.669,False
+Brand,standardised,Nissan,76966,7.658,False
+Model,standardised,Verna,26046,2.592,False
+Model,standardised,Octavia,26008,2.588,False
+Model,standardised,Camry,25976,2.585,False
+Model,standardised,3 Series,25975,2.585,False
+Model,standardised,Amaze,25950,2.582,False
+Model,standardised,Figo,25942,2.581,False
+Model,standardised,Kushaq,25939,2.581,False
+Model,standardised,EcoSport,25922,2.579,False
+Model,standardised,A4,25919,2.579,False
+Model,standardised,i20,25880,2.575,False
+Model,standardised,E-Class,25871,2.574,False
+Model,standardised,Magnite,25850,2.572,False
+Model,standardised,Carens,25819,2.569,False
+Model,standardised,Virtus,25809,2.568,False
+Model,standardised,Q3,25807,2.568,False
+Model,standardised,X3,25806,2.568,False
+Model,standardised,Bolero,25798,2.567,False
+Model,standardised,Yaris,25789,2.566,False
+Model,standardised,Harrier,25783,2.565,False
+Model,standardised,X1,25780,2.565,False
+Model,standardised,Punch,25757,2.563,False
+Model,standardised,Sonet,25745,2.562,False
+Model,standardised,Taigun,25737,2.561,False
+Model,standardised,XUV700,25737,2.561,False
+Model,standardised,Civic,25730,2.56,False
+Model,standardised,Seltos,25729,2.56,False
+Model,standardised,GLA,25722,2.559,False
+Model,standardised,C-Class,25712,2.558,False
+Model,standardised,Polo,25639,2.551,False
+Model,standardised,City,25632,2.55,False
+Model,standardised,Corolla,25632,2.55,False
+Model,standardised,Slavia,25604,2.548,False
+Model,standardised,Sunny,25592,2.546,False
+Model,standardised,Creta,25591,2.546,False
+Model,standardised,Q5,25580,2.545,False
+Model,standardised,Endeavour,25575,2.545,False
+Model,standardised,Scorpio,25558,2.543,False
+Model,standardised,Nexon,25535,2.541,False
+Model,standardised,Kicks,25524,2.54,False
+Fuel_Type,standardised,Petrol,414245,41.218,False
+Fuel_Type,standardised,Diesel,278819,27.743,False
+Fuel_Type,standardised,CNG,90628,9.018,False
+Fuel_Type,standardised,Unknown,78733,7.834,False
+Fuel_Type,standardised,Electric,75782,7.54,False
+Fuel_Type,standardised,Hybrid,66793,6.646,False
+Transmission,standardised,Manual,600630,59.764,False
+Transmission,standardised,Automatic,323985,32.237,False
+Transmission,standardised,Unknown,80385,7.999,False
+Owner_Type,standardised,First,602365,59.937,False
+Owner_Type,standardised,Second,251715,25.046,False
+Owner_Type,standardised,Third,100653,10.015,False
+Owner_Type,standardised,Fourth+,50267,5.002,False
+Color,standardised,Red,132535,13.188,False
+Color,standardised,Blue,132306,13.165,False
+Color,standardised,Black,132298,13.164,False
+Color,standardised,White,132027,13.137,False
+Color,standardised,Brown,131985,13.133,False
+Color,standardised,Grey,131932,13.128,False
+Color,standardised,Silver,131498,13.084,False
+Color,standardised,Unknown,80419,8.002,False
+City,standardised,Delhi,115999,11.542,False
+City,standardised,Hyderabad,115854,11.528,False
+City,standardised,Mumbai,115777,11.52,False
+City,standardised,Pune,115588,11.501,False
+City,standardised,Ahmedabad,115480,11.491,False
+City,standardised,Bangalore,115471,11.49,False
+City,standardised,Kolkata,115405,11.483,False
+City,standardised,Chennai,114996,11.442,False
+City,standardised,Unknown,80430,8.003,False
+Segment,standardised,Non-luxury,772828,76.898,False
+Segment,standardised,Luxury,232172,23.102,False
+Brand,raw,'BMW',76773,7.639,False
+Brand,raw,'Skoda',76762,7.638,False
+Brand,raw,'Hyundai',76750,7.637,False
+Brand,raw,'Ford',76694,7.631,False
+Brand,raw,'Toyota',76630,7.625,False
+Brand,raw,'Audi',76573,7.619,False
+Brand,raw,'Honda',76542,7.616,False
+Brand,raw,'Kia',76524,7.614,False
+Brand,raw,'Mercedes',76492,7.611,False
+Brand,raw,'Volkswagen',76441,7.606,False
+Brand,raw,'Mahindra',76308,7.593,False
+Brand,raw,'Tata',76297,7.592,False
+Brand,raw,'Nissan',76174,7.58,False
+Brand,raw,' Mercedes ',813,0.081,True
+Brand,raw,' Nissan ',792,0.079,True
+Brand,raw,' Skoda ',789,0.079,True
+Brand,raw,' BMW ',788,0.078,True
+Brand,raw,' Mahindra ',785,0.078,True
+Brand,raw,' Tata ',778,0.077,True
+Brand,raw,' Honda ',770,0.077,True
+Brand,raw,' Kia ',769,0.077,True
+Brand,raw,' Hyundai ',767,0.076,True
+Brand,raw,' Toyota ',767,0.076,True
+Brand,raw,' Ford ',745,0.074,True
+Brand,raw,' Volkswagen ',744,0.074,True
+Brand,raw,' Audi ',733,0.073,True
+Model,raw,'Verna',26046,2.592,False
+Model,raw,'Octavia',26008,2.588,False
+Model,raw,'Camry',25976,2.585,False
+Model,raw,'3 Series',25975,2.585,False
+Model,raw,'Amaze',25950,2.582,False
+Model,raw,'Figo',25942,2.581,False
+Model,raw,'Kushaq',25939,2.581,False
+Model,raw,'EcoSport',25922,2.579,False
+Model,raw,'A4',25919,2.579,False
+Model,raw,'i20',25880,2.575,False
+Model,raw,'E-Class',25871,2.574,False
+Model,raw,'Magnite',25850,2.572,False
+Model,raw,'Carens',25819,2.569,False
+Model,raw,'Virtus',25809,2.568,False
+Model,raw,'Q3',25807,2.568,False
+Model,raw,'X3',25806,2.568,False
+Model,raw,'Bolero',25798,2.567,False
+Model,raw,'Yaris',25789,2.566,False
+Model,raw,'Harrier',25783,2.565,False
+Model,raw,'X1',25780,2.565,False
+Model,raw,'Punch',25757,2.563,False
+Model,raw,'Sonet',25745,2.562,False
+Model,raw,'Taigun',25737,2.561,False
+Model,raw,'XUV700',25737,2.561,False
+Model,raw,'Civic',25730,2.56,False
+Model,raw,'Seltos',25729,2.56,False
+Model,raw,'GLA',25722,2.559,False
+Model,raw,'C-Class',25712,2.558,False
+Model,raw,'Polo',25639,2.551,False
+Model,raw,'City',25632,2.55,False
+Model,raw,'Corolla',25632,2.55,False
+Model,raw,'Slavia',25604,2.548,False
+Model,raw,'Sunny',25592,2.546,False
+Model,raw,'Creta',25591,2.546,False
+Model,raw,'Q5',25580,2.545,False
+Model,raw,'Endeavour',25575,2.545,False
+Model,raw,'Scorpio',25558,2.543,False
+Model,raw,'Nexon',25535,2.541,False
+Model,raw,'Kicks',25524,2.54,False
+Fuel_Type,raw,'Petrol',407577,40.555,False
+Fuel_Type,raw,'Diesel',272056,27.07,False
+Fuel_Type,raw,'CNG',90628,9.018,False
+Fuel_Type,raw,'Unknown',78733,7.834,False
+Fuel_Type,raw,'Electric',72513,7.215,False
+Fuel_Type,raw,'Hybrid',63370,6.305,False
+Fuel_Type,raw,'hybridd',3423,0.341,True
+Fuel_Type,raw,' Diesel',3390,0.337,True
+Fuel_Type,raw,'diesel ',3373,0.336,True
+Fuel_Type,raw,'petrol',3351,0.333,True
+Fuel_Type,raw,'PETROL',3317,0.33,True
+Fuel_Type,raw,'electrik',3269,0.325,True
+Transmission,raw,'Manual',600630,59.764,False
+Transmission,raw,'Automatic',323985,32.237,False
+Transmission,raw,'Unknown',80385,7.999,False
+Owner_Type,raw,'First',602365,59.937,False
+Owner_Type,raw,'Second',251715,25.046,False
+Owner_Type,raw,'Third',100653,10.015,False
+Owner_Type,raw,'Fourth+',50267,5.002,False
+Color,raw,'Red',132535,13.188,False
+Color,raw,'Blue',132306,13.165,False
+Color,raw,'Black',132298,13.164,False
+Color,raw,'White',132027,13.137,False
+Color,raw,'Brown',131985,13.133,False
+Color,raw,'Grey',131932,13.128,False
+Color,raw,'Silver',131498,13.084,False
+Color,raw,'Unknown',80419,8.002,False
+City,raw,'Delhi',115999,11.542,False
+City,raw,'Hyderabad',115854,11.528,False
+City,raw,'Mumbai',115777,11.52,False
+City,raw,'Pune',115588,11.501,False
+City,raw,'Ahmedabad',115480,11.491,False
+City,raw,'Bangalore',115471,11.49,False
+City,raw,'Kolkata',115405,11.483,False
+City,raw,'Chennai',114996,11.442,False
+City,raw,'Unknown',80430,8.003,False

@@ -1,0 +1,10 @@
+rule,n_rows,pct,luxury_share_of_flagged_pct
+imp_price_nonpos,0,0.0,
+imp_kms_gt_1m,3908,0.389,23.132
+imp_kms_per_year_gt_25k,9623,0.958,23.174
+imp_kms_nonpos,0,0.0,
+imp_hp_nonpos,32,0.003,21.875
+imp_engine_nonpos,0,0.0,
+imp_mileage_nonpos,0,0.0,
+imp_year_age_mismatch,0,0.0,
+imp_any,9655,0.961,23.169

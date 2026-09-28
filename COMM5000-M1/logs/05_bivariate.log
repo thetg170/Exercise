@@ -1,0 +1,146 @@
+[load_raw] 1,005,000 dòng x 20 cột từ data_interim.parquet (0.1s)
+=== Pearson (toàn bộ dữ liệu, pairwise) ===
+                  Car_Price  log_Car_Price  Registration_Age   Year  Kms_Driven  Mileage_kmpl  Engine_CC  Horsepower  Accidents  Number_of_Doors  Seats  Insurance_Valid  Service_History  Tax_Paid
+Car_Price             1.000          0.716            -0.287  0.287      -0.074         0.000      0.037       0.045     -0.010           -0.002  0.001            0.000            0.017    -0.002
+log_Car_Price         0.716          1.000            -0.513  0.513      -0.355         0.002      0.064       0.076     -0.018           -0.002  0.000            0.000            0.029    -0.002
+Registration_Age     -0.287         -0.513             1.000 -1.000       0.642        -0.001      0.000      -0.000     -0.000            0.002  0.001           -0.000            0.000     0.001
+Year                  0.287          0.513            -1.000  1.000      -0.642         0.001     -0.000       0.000      0.000           -0.002 -0.001            0.000           -0.000    -0.001
+Kms_Driven           -0.074         -0.355             0.642 -0.642       1.000         0.001     -0.001      -0.000      0.001           -0.000  0.001            0.001            0.001     0.002
+Mileage_kmpl          0.000          0.002            -0.001  0.001       0.001         1.000      0.000       0.000      0.001            0.000  0.003            0.001            0.001    -0.001
+Engine_CC             0.037          0.064             0.000 -0.000      -0.001         0.000      1.000       0.839      0.001           -0.002 -0.001            0.001           -0.000     0.000
+Horsepower            0.045          0.076            -0.000  0.000      -0.000         0.000      0.839       1.000      0.001           -0.001 -0.002            0.001           -0.000     0.000
+Accidents            -0.010         -0.018            -0.000  0.000       0.001         0.001      0.001       0.001      1.000           -0.001 -0.002            0.002           -0.002    -0.001
+Number_of_Doors      -0.002         -0.002             0.002 -0.002      -0.000         0.000     -0.002      -0.001     -0.001            1.000 -0.000           -0.000            0.000    -0.000
+Seats                 0.001          0.000             0.001 -0.001       0.001         0.003     -0.001      -0.002     -0.002           -0.000  1.000            0.003           -0.000     0.000
+Insurance_Valid       0.000          0.000            -0.000  0.000       0.001         0.001      0.001       0.001      0.002           -0.000  0.003            1.000            0.000     0.001
+Service_History       0.017          0.029             0.000 -0.000       0.001         0.001     -0.000      -0.000     -0.002            0.000 -0.000            0.000            1.000     0.000
+Tax_Paid             -0.002         -0.002             0.001 -0.001       0.002        -0.001      0.000       0.000     -0.001           -0.000  0.000            0.001            0.000     1.000
+
+=== Spearman ===
+                  Car_Price  log_Car_Price  Registration_Age   Year  Kms_Driven  Mileage_kmpl  Engine_CC  Horsepower  Accidents  Number_of_Doors  Seats  Insurance_Valid  Service_History  Tax_Paid
+Car_Price             1.000          1.000            -0.490  0.490      -0.454         0.001      0.060       0.072     -0.016           -0.002  0.000            0.000            0.028    -0.001
+log_Car_Price         1.000          1.000            -0.490  0.490      -0.454         0.001      0.060       0.072     -0.016           -0.002  0.000            0.000            0.028    -0.001
+Registration_Age     -0.490         -0.490             1.000 -1.000       0.813        -0.001      0.000       0.000     -0.001            0.002  0.001           -0.000            0.000     0.001
+Year                  0.490          0.490            -1.000  1.000      -0.813         0.001     -0.000      -0.000      0.001           -0.002 -0.001            0.000           -0.000    -0.001
+Kms_Driven           -0.454         -0.454             0.813 -0.813       1.000        -0.000     -0.000       0.001      0.000            0.001  0.001            0.000            0.000     0.001
+Mileage_kmpl          0.001          0.001            -0.001  0.001      -0.000         1.000      0.001       0.001      0.001            0.000  0.003            0.001            0.001    -0.001
+Engine_CC             0.060          0.060             0.000 -0.000      -0.000         0.001      1.000       0.833      0.001           -0.002 -0.002            0.001           -0.000     0.000
+Horsepower            0.072          0.072             0.000 -0.000       0.001         0.001      0.833       1.000      0.001           -0.002 -0.002            0.001            0.000    -0.000
+Accidents            -0.016         -0.016            -0.001  0.001       0.000         0.001      0.001       0.001      1.000           -0.002 -0.001            0.002           -0.001    -0.000
+Number_of_Doors      -0.002         -0.002             0.002 -0.002       0.001         0.000     -0.002      -0.002     -0.002            1.000 -0.000           -0.000            0.000    -0.000
+Seats                 0.000          0.000             0.001 -0.001       0.001         0.003     -0.002      -0.002     -0.001           -0.000  1.000            0.003           -0.000     0.000
+Insurance_Valid       0.000          0.000            -0.000  0.000       0.000         0.001      0.001       0.001      0.002           -0.000  0.003            1.000            0.000     0.001
+Service_History       0.028          0.028             0.000 -0.000       0.000         0.001     -0.000       0.000     -0.001            0.000 -0.000            0.000            1.000     0.000
+Tax_Paid             -0.001         -0.001             0.001 -0.001       0.001        -0.001      0.000      -0.000     -0.000           -0.000  0.000            0.001            0.000     1.000
+
+=== Cặp biến giải thích có |r| >= 0.3 (Pearson hoặc Spearman) ===
+           var_1      var_2  pearson  spearman                         flag
+Registration_Age       Year  -1.0000   -1.0000 MULTICOLLINEARITY (|r|>=0.7)
+       Engine_CC Horsepower   0.8393    0.8332 MULTICOLLINEARITY (|r|>=0.7)
+Registration_Age Kms_Driven   0.6416    0.8130 MULTICOLLINEARITY (|r|>=0.7)
+            Year Kms_Driven  -0.6416   -0.8130 MULTICOLLINEARITY (|r|>=0.7)
+Các cặp còn lại (62 cặp): |r| lớn nhất = 0.0031
+
+=== Correlation với Car_Price: toàn bộ vs bỏ implausible vs bỏ thêm giá sàn ===
+                 pearson_price                                             spearman_price                                            
+view                       all excl_implausible excl_implausible_and_floor            all excl_implausible excl_implausible_and_floor
+variable                                                                                                                             
+Registration_Age        -0.287           -0.357                     -0.245         -0.490           -0.493                     -0.365
+Year                     0.287            0.357                      0.245          0.490            0.493                      0.365
+Kms_Driven              -0.074           -0.335                     -0.212         -0.454           -0.478                     -0.347
+Mileage_kmpl             0.000           -0.000                     -0.001          0.001            0.001                      0.000
+Engine_CC                0.037            0.046                      0.030          0.060            0.061                      0.041
+Horsepower               0.045            0.055                      0.036          0.072            0.072                      0.048
+Accidents               -0.010           -0.013                     -0.008         -0.016           -0.016                     -0.010
+Number_of_Doors         -0.002           -0.001                     -0.000         -0.002           -0.001                     -0.001
+Seats                    0.001            0.001                      0.001          0.000            0.000                      0.001
+Insurance_Valid          0.000           -0.000                     -0.000          0.000            0.000                      0.000
+Service_History          0.017            0.020                      0.013          0.028            0.028                      0.018
+Tax_Paid                -0.002           -0.001                     -0.000         -0.001           -0.001                      0.000
+
+Sample scatter: n = 5,000, seed = 5000; Luxury trong sample = 22.02%; implausible trong sample = 55; giá sàn trong sample = 552
+
+Mean / median Car_Price theo Registration_Age x Segment (toàn bộ dữ liệu):
+                      mean               median           
+Segment             Luxury Non-luxury    Luxury Non-luxury
+Registration_Age                                          
+1                2,888,358  1,207,154 2,731,886  1,145,485
+2                2,825,894  1,150,180 2,674,581  1,090,901
+3                2,798,183  1,104,337 2,664,012  1,048,922
+4                2,712,829  1,049,797 2,582,984  1,002,569
+5                2,628,170  1,006,072 2,531,191    954,787
+6                2,627,055    949,706 2,505,579    903,348
+7                2,565,922    909,820 2,426,239    858,636
+8                2,536,211    853,480 2,392,975    804,735
+9                2,454,338    799,006 2,337,797    759,059
+10               2,419,999    752,485 2,308,823    709,143
+11               2,356,096    698,423 2,245,867    658,447
+12               2,316,819    653,995 2,184,789    620,829
+13               2,242,421    611,991 2,134,724    570,169
+14               2,216,384    561,534 2,132,211    520,332
+15               2,156,102    512,931 2,059,165    471,035
+16               2,113,777    465,549 2,008,870    418,292
+17               2,049,011    425,379 1,960,911    367,222
+18               2,019,866    390,667 1,930,807    328,500
+19               1,966,591    352,151 1,883,531    279,724
+20               1,913,242    317,780 1,798,576    229,268
+21               1,844,301    284,975 1,775,627    180,629
+22               1,821,652    257,122 1,741,176    133,206
+23               1,765,761    228,934 1,682,322     88,002
+24               1,693,168    205,715 1,611,854     50,000
+25               1,668,641    183,545 1,592,775     50,000
+
+Mean / median Car_Price theo decile Kms_Driven x Segment:
+                mean               median            Kms_range         
+              Luxury Non-luxury    Luxury Non-luxury       min      max
+Kms_decile                                                             
+1          2,697,774  1,105,279 2,676,627  1,092,589      5000    37933
+2          2,586,921    985,591 2,544,613    967,943     37934    68893
+3          2,456,230    860,211 2,417,523    839,676     68894    99864
+4          2,327,638    722,485 2,288,690    700,009     99865   131568
+5          2,227,814    633,768 2,179,106    606,196    131570   166313
+6          2,148,060    561,116 2,112,863    524,960    166320   207096
+7          2,075,827    478,399 2,009,874    429,225    207097   256752
+8          1,960,884    390,876 1,895,552    319,648    256755   320250
+9          1,866,551    287,693 1,769,926    170,630    320254   409824
+10         2,286,642    346,862 1,608,887     50,000    409825  4368000
+
+=== Crosstab (row %) ===
+
+Segment x Fuel_Type: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 0.08 điểm %
+Fuel_Type    CNG  Diesel  Electric  Hybrid  Petrol  Unknown
+Segment                                                    
+Luxury      9.04   27.79      7.48    6.68   41.16     7.84
+Non-luxury  9.01   27.73      7.56    6.64   41.23     7.83
+
+Segment x Transmission: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 0.12 điểm %
+Transmission  Automatic  Manual  Unknown
+Segment                                 
+Luxury            32.23   59.68     8.09
+Non-luxury        32.24   59.79     7.97
+
+Segment x Owner_Type: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 0.09 điểm %
+Owner_Type  First  Fourth+  Second  Third
+Segment                                  
+Luxury      59.90     5.07   25.02  10.01
+Non-luxury  59.95     4.98   25.05  10.02
+
+Segment x City: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 0.09 điểm %
+City        Ahmedabad  Bangalore  Chennai  Delhi  Hyderabad  Kolkata  Mumbai   Pune  Unknown
+Segment                                                                                     
+Luxury          11.56      11.46    11.45  11.53      11.48    11.46   11.55  11.48     8.03
+Non-luxury      11.47      11.50    11.44  11.55      11.54    11.49   11.51  11.51     8.00
+
+Segment x Color: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 0.13 điểm %
+Color       Black   Blue  Brown   Grey    Red  Silver  Unknown  White
+Segment                                                              
+Luxury      13.23  13.15  13.15  13.12  13.16   12.98     8.07  13.13
+Non-luxury  13.15  13.17  13.13  13.13  13.20   13.11     7.98  13.14
+
+Fuel_Type x Transmission: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 0.38 điểm %
+
+Brand x Fuel_Type: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 1.04 điểm %
+
+City x Fuel_Type: chênh lệch lớn nhất giữa các hàng trong cùng một cột = 0.33 điểm %
+
+Đã lưu hình: fig_05a..fig_05d

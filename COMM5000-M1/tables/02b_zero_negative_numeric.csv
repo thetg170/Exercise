@@ -1,0 +1,11 @@
+variable,n_zero,n_negative,min,max
+Year,0,0,2000.0,2024.0
+Mileage_kmpl,0,0,5.0,36.2817374998743
+Engine_CC,0,0,800.0,3362.02348636616
+Horsepower,0,32,-18.5099824262685,290.249838940378
+Kms_Driven,0,0,5000.0,4368000.0
+Accidents,744978,0,0.0,5.0
+Number_of_Doors,0,0,2.0,5.0
+Seats,0,0,2.0,7.0
+Registration_Age,0,0,1.0,25.0
+Car_Price,0,0,50000.0,37885997.5331911

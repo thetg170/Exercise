@@ -1,0 +1,16 @@
+group_var,unknown_col,min_group_pct,max_group_pct,range_pp
+City,Fuel_Type,7.619,7.954,0.335
+City,Transmission,7.836,8.13,0.294
+City,Color,7.881,8.104,0.223
+Brand,Fuel_Type,7.691,8.035,0.343
+Brand,Transmission,7.842,8.227,0.385
+Brand,Color,7.846,8.128,0.281
+Brand,City,7.813,8.151,0.337
+Segment,Fuel_Type,7.831,7.845,0.014
+Segment,Transmission,7.971,8.091,0.12
+Segment,Color,7.981,8.072,0.092
+Segment,City,7.995,8.029,0.033
+Year,Fuel_Type,7.582,8.083,0.501
+Year,Transmission,7.764,8.377,0.613
+Year,Color,7.56,8.232,0.672
+Year,City,7.806,8.21,0.404

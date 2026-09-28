@@ -1,0 +1,21 @@
+variable,pandas_dtype,suggested_type,variable_class,n_unique,n_missing_NaN,example_values,meaning_original,notes_assumptions
+Brand,str,category,categorical – nominal,26,0,'BMW'; 'Skoda'; 'Hyundai'; 'Ford',Manufacturer of the vehicle,"Dùng để tạo Segment (luxury = Audi, BMW, Mercedes)"
+Model,str,category,categorical – nominal,39,0,'Verna'; 'Octavia'; 'Camry'; '3 Series',Model name,Lồng trong Brand (mỗi model thuộc 1 brand — kiểm tra ở 02)
+Year,int64,int,numeric – discrete (thời gian),25,0,min=2000; median=2012; max=2024,Manufacturing year,Năm sản xuất; có thể xem như biến thời gian
+Mileage_kmpl,float64,float,numeric – continuous,919489,80390,min=5; median=18; max=36.28,Fuel efficiency (km/l),Đơn vị km/l theo mô tả gốc
+Engine_CC,float64,float,numeric – continuous,883162,80403,min=800; median=1500; max=3362,Engine displacement in cubic centimeters,Đơn vị cc theo mô tả gốc
+Horsepower,float64,float,numeric – continuous,920000,80403,min=-18.51; median=120.1; max=290.2,Engine power output,GIẢ ĐỊNH đơn vị hp (mô tả gốc không ghi đơn vị)
+Fuel_Type,str,category,categorical – nominal,12,0,'Petrol'; 'Diesel'; 'CNG'; 'Unknown',Fuel category,
+Transmission,str,category,categorical – nominal,3,0,'Manual'; 'Automatic'; 'Unknown',Manual or Automatic,Mô tả gốc: Manual hoặc Automatic
+Owner_Type,str,ordered category,categorical – ordinal,4,0,'First'; 'Second'; 'Third'; 'Fourth+',Ownership history,Thứ tự First < Second < Third < Fourth+ (suy từ nhãn)
+Color,str,category,categorical – nominal,8,0,'Red'; 'Blue'; 'Black'; 'White',Vehicle color,
+City,str,category,categorical – nominal,9,0,'Delhi'; 'Hyderabad'; 'Mumbai'; 'Pune',Registration city,Mô tả gốc: registration city (không phải nơi đăng tin)
+Kms_Driven,int64,int/float,numeric – continuous,252585,0,min=5000; median=1.663e+05; max=4.368e+06,Total distance traveled,GIẢ ĐỊNH đơn vị km (tên cột)
+Insurance_Valid,int64,bool (0/1),categorical – binary,2,0,min=0; median=1; max=1,Insurance status,"GIẢ ĐỊNH 1 = còn hiệu lực, 0 = không"
+Service_History,int64,bool (0/1),categorical – binary,2,0,min=0; median=1; max=1,Availability of service records,GIẢ ĐỊNH 1 = có hồ sơ bảo dưỡng
+Accidents,int64,int,numeric – discrete (count),6,0,min=0; median=0; max=5,Number of reported accidents,Số vụ tai nạn được báo cáo
+Tax_Paid,int64,bool (0/1),categorical – binary,2,0,min=0; median=1; max=1,Road tax payment status,GIẢ ĐỊNH 1 = đã nộp road tax
+Number_of_Doors,int64,int,numeric – discrete,3,0,min=2; median=4; max=5,Vehicle door count,Ít giá trị -> có thể xem như categorical ordinal
+Seats,int64,int,numeric – discrete,4,0,min=2; median=5; max=7,Seating capacity,Ít giá trị -> có thể xem như categorical ordinal
+Registration_Age,int64,int,numeric – discrete,25,0,min=1; median=13; max=25,Vehicle age since registration,GIẢ ĐỊNH đơn vị năm; quan hệ với Year kiểm tra ở 02
+Car_Price,float64,float,numeric – continuous (TARGET),883005,0,min=5e+04; median=7.589e+05; max=3.789e+07,"Target variable, in Rupees",Đơn vị Rupees theo mô tả gốc

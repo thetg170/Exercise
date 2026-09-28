@@ -1,0 +1,10 @@
+variable,n_groups,largest,largest_pct,smallest,smallest_pct,max/min_excl_Unknown,CV_counts_excl_Unknown
+Segment,2,Non-luxury,76.898,Luxury,23.102,3.329,0.7608
+Brand,13,BMW,7.718,Nissan,7.658,1.008,0.0024
+Model,39,Verna,2.592,Kicks,2.54,1.02,0.0056
+City,9,Delhi,11.542,Unknown,8.003,1.009,0.0027
+Year,25,2019,4.036,2004,3.967,1.017,0.0051
+Fuel_Type,6,Petrol,41.218,Hybrid,6.646,6.202,0.837
+Transmission,3,Manual,59.764,Unknown,7.999,1.854,0.4231
+Owner_Type,4,First,59.937,Fourth+,5.002,11.983,0.992
+Color,8,Red,13.188,Unknown,8.002,1.008,0.0025

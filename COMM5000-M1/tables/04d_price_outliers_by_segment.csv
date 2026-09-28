@@ -1,0 +1,3 @@
+Segment,n,pct_above_overall_fence_1.5,share_of_all_high_outliers_pct,within_segment_fence_1.5,pct_above_within_segment_fence,pct_above_within_segment_3iqr
+Luxury,232172,28.528,94.064,4785489.362576824,0.914,0.802
+Non-luxury,772828,0.541,5.936,1965598.1238133,0.662,0.502

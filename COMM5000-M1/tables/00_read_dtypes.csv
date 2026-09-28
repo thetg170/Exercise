@@ -1,0 +1,21 @@
+column,pandas_dtype,python_types
+Brand,str,{'str': 1005000}
+Model,str,{'str': 1005000}
+Year,int64,{'int': 1005000}
+Mileage_kmpl,float64,{'float': 1005000}
+Engine_CC,float64,{'float': 1005000}
+Horsepower,float64,{'float': 1005000}
+Fuel_Type,str,{'str': 1005000}
+Transmission,str,{'str': 1005000}
+Owner_Type,str,{'str': 1005000}
+Color,str,{'str': 1005000}
+City,str,{'str': 1005000}
+Kms_Driven,int64,{'int': 1005000}
+Insurance_Valid,int64,{'int': 1005000}
+Service_History,int64,{'int': 1005000}
+Accidents,int64,{'int': 1005000}
+Tax_Paid,int64,{'int': 1005000}
+Number_of_Doors,int64,{'int': 1005000}
+Seats,int64,{'int': 1005000}
+Registration_Age,int64,{'int': 1005000}
+Car_Price,float64,{'float': 1005000}

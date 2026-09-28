@@ -1,0 +1,67 @@
+[load_raw] 1,005,000 dòng x 20 cột từ data_interim.parquet (0.1s)
+Kích thước: 1,005,000 dòng x 20 cột
+Cột: ['Brand', 'Model', 'Year', 'Mileage_kmpl', 'Engine_CC', 'Horsepower', 'Fuel_Type', 'Transmission', 'Owner_Type', 'Color', 'City', 'Kms_Driven', 'Insurance_Valid', 'Service_History', 'Accidents', 'Tax_Paid', 'Number_of_Doors', 'Seats', 'Registration_Age', 'Car_Price']
+Cột dạng ID: KHÔNG có -> GIẢ ĐỊNH: 1 dòng = 1 listing
+
+=== Data dictionary ===
+        variable pandas_dtype   suggested_type                 variable_class  n_unique  n_missing_NaN                             example_values                                          notes_assumptions
+           Brand          str         category          categorical – nominal        26              0          'BMW'; 'Skoda'; 'Hyundai'; 'Ford'         Dùng để tạo Segment (luxury = Audi, BMW, Mercedes)
+           Model          str         category          categorical – nominal        39              0    'Verna'; 'Octavia'; 'Camry'; '3 Series' Lồng trong Brand (mỗi model thuộc 1 brand — kiểm tra ở 02)
+            Year        int64              int numeric – discrete (thời gian)        25              0            min=2000; median=2012; max=2024                Năm sản xuất; có thể xem như biến thời gian
+    Mileage_kmpl      float64            float           numeric – continuous    919489          80390                min=5; median=18; max=36.28                                 Đơn vị km/l theo mô tả gốc
+       Engine_CC      float64            float           numeric – continuous    883162          80403             min=800; median=1500; max=3362                                   Đơn vị cc theo mô tả gốc
+      Horsepower      float64            float           numeric – continuous    920000          80403        min=-18.51; median=120.1; max=290.2            GIẢ ĐỊNH đơn vị hp (mô tả gốc không ghi đơn vị)
+       Fuel_Type          str         category          categorical – nominal        12              0       'Petrol'; 'Diesel'; 'CNG'; 'Unknown'                                                           
+    Transmission          str         category          categorical – nominal         3              0           'Manual'; 'Automatic'; 'Unknown'                           Mô tả gốc: Manual hoặc Automatic
+      Owner_Type          str ordered category          categorical – ordinal         4              0      'First'; 'Second'; 'Third'; 'Fourth+'      Thứ tự First < Second < Third < Fourth+ (suy từ nhãn)
+           Color          str         category          categorical – nominal         8              0            'Red'; 'Blue'; 'Black'; 'White'                                                           
+            City          str         category          categorical – nominal         9              0     'Delhi'; 'Hyderabad'; 'Mumbai'; 'Pune'     Mô tả gốc: registration city (không phải nơi đăng tin)
+      Kms_Driven        int64        int/float           numeric – continuous    252585              0  min=5000; median=1.663e+05; max=4.368e+06                               GIẢ ĐỊNH đơn vị km (tên cột)
+ Insurance_Valid        int64       bool (0/1)           categorical – binary         2              0                     min=0; median=1; max=1                       GIẢ ĐỊNH 1 = còn hiệu lực, 0 = không
+ Service_History        int64       bool (0/1)           categorical – binary         2              0                     min=0; median=1; max=1                            GIẢ ĐỊNH 1 = có hồ sơ bảo dưỡng
+       Accidents        int64              int     numeric – discrete (count)         6              0                     min=0; median=0; max=5                                 Số vụ tai nạn được báo cáo
+        Tax_Paid        int64       bool (0/1)           categorical – binary         2              0                     min=0; median=1; max=1                               GIẢ ĐỊNH 1 = đã nộp road tax
+ Number_of_Doors        int64              int             numeric – discrete         3              0                     min=2; median=4; max=5           Ít giá trị -> có thể xem như categorical ordinal
+           Seats        int64              int             numeric – discrete         4              0                     min=2; median=5; max=7           Ít giá trị -> có thể xem như categorical ordinal
+Registration_Age        int64              int             numeric – discrete        25              0                   min=1; median=13; max=25        GIẢ ĐỊNH đơn vị năm; quan hệ với Year kiểm tra ở 02
+       Car_Price      float64            float  numeric – continuous (TARGET)    883005              0 min=5e+04; median=7.589e+05; max=3.789e+07                               Đơn vị Rupees theo mô tả gốc
+
+=== Nhãn gốc của biến categorical ===
+
+--- Brand: 26 nhãn gốc ---
+'BMW':76,773, 'Skoda':76,762, 'Hyundai':76,750, 'Ford':76,694, 'Toyota':76,630, 'Audi':76,573, 'Honda':76,542, 'Kia':76,524, 'Mercedes':76,492, 'Volkswagen':76,441, 'Mahindra':76,308, 'Tata':76,297, 'Nissan':76,174, ' Mercedes ':813, ' Nissan ':792, ' Skoda ':789, ' BMW ':788, ' Mahindra ':785, ' Tata ':778, ' Honda ':770, ' Kia ':769, ' Hyundai ':767, ' Toyota ':767, ' Ford ':745, ' Volkswagen ':744, ' Audi ':733
+
+--- Model: 39 nhãn gốc ---
+'Verna':26,046, 'Octavia':26,008, 'Camry':25,976, '3 Series':25,975, 'Amaze':25,950, 'Figo':25,942, 'Kushaq':25,939, 'EcoSport':25,922, 'A4':25,919, 'i20':25,880, 'E-Class':25,871, 'Magnite':25,850, 'Carens':25,819, 'Virtus':25,809, 'Q3':25,807, 'X3':25,806, 'Bolero':25,798, 'Yaris':25,789, 'Harrier':25,783, 'X1':25,780, 'Punch':25,757, 'Sonet':25,745, 'Taigun':25,737, 'XUV700':25,737, 'Civic':25,730, 'Seltos':25,729, 'GLA':25,722, 'C-Class':25,712, 'Polo':25,639, 'City':25,632, 'Corolla':25,632, 'Slavia':25,604, 'Sunny':25,592, 'Creta':25,591, 'Q5':25,580, 'Endeavour':25,575, 'Scorpio':25,558, 'Nexon':25,535, 'Kicks':25,524
+
+--- Fuel_Type: 12 nhãn gốc ---
+'Petrol':407,577, 'Diesel':272,056, 'CNG':90,628, 'Unknown':78,733, 'Electric':72,513, 'Hybrid':63,370, 'hybridd':3,423, ' Diesel':3,390, 'diesel ':3,373, 'petrol':3,351, 'PETROL':3,317, 'electrik':3,269
+
+--- Transmission: 3 nhãn gốc ---
+'Manual':600,630, 'Automatic':323,985, 'Unknown':80,385
+
+--- Owner_Type: 4 nhãn gốc ---
+'First':602,365, 'Second':251,715, 'Third':100,653, 'Fourth+':50,267
+
+--- Color: 8 nhãn gốc ---
+'Red':132,535, 'Blue':132,306, 'Black':132,298, 'White':132,027, 'Brown':131,985, 'Grey':131,932, 'Silver':131,498, 'Unknown':80,419
+
+--- City: 9 nhãn gốc ---
+'Delhi':115,999, 'Hyderabad':115,854, 'Mumbai':115,777, 'Pune':115,588, 'Ahmedabad':115,480, 'Bangalore':115,471, 'Kolkata':115,405, 'Chennai':114,996, 'Unknown':80,430
+
+=== Tập giá trị của biến rời rạc / nhị phân ===
+Year              (25 giá trị): 2000:40,220, 2001:40,028, 2002:40,467, 2003:40,244, 2004:39,871, 2005:40,472, 2006:40,547, 2007:40,180, 2008:40,336, 2009:39,939, 2010:40,239, 2011:40,138, 2012:40,466, 2013:40,038, 2014:40,256, 2015:39,880, 2016:39,987, 2017:40,424, 2018:39,972, 2019:40,563, 2020:40,032, 2021:40,148, 2022:40,182, 2023:40,157, 2024:40,214
+Registration_Age  (25 giá trị): 1:40,214, 2:40,157, 3:40,182, 4:40,148, 5:40,032, 6:40,563, 7:39,972, 8:40,424, 9:39,987, 10:39,880, 11:40,256, 12:40,038, 13:40,466, 14:40,138, 15:40,239, 16:39,939, 17:40,336, 18:40,180, 19:40,547, 20:40,472, 21:39,871, 22:40,244, 23:40,467, 24:40,028, 25:40,220
+Accidents         (6 giá trị): 0:744,978, 1:222,955, 2:33,434, 3:3,395, 4:222, 5:16
+Number_of_Doors   (3 giá trị): 2:50,514, 4:603,710, 5:350,776
+Seats             (4 giá trị): 2:20,175, 4:80,272, 5:753,629, 7:150,924
+Insurance_Valid   (2 giá trị): 0:151,292, 1:853,708
+Service_History   (2 giá trị): 0:250,486, 1:754,514
+Tax_Paid          (2 giá trị): 0:100,235, 1:904,765
+
+=== Biến continuous: tỉ lệ giá trị nguyên / số giá trị unique ===
+Mileage_kmpl   % nguyên =   0.06%   unique = 919,489 / 924,610
+Engine_CC      % nguyên =   4.00%   unique = 883,162 / 924,597
+Horsepower     % nguyên =   0.00%   unique = 920,000 / 924,597
+Kms_Driven     % nguyên = 100.00%   unique = 252,585 / 1,005,000
+Car_Price      % nguyên =  11.70%   unique = 883,005 / 1,005,000

@@ -1,0 +1,5 @@
+rule,n_rows
+"Kms > 1,000,000 (Guide)",3908
+"km/năm > 25,000 (logic nội tại)",9623
+cả hai,3908
+chỉ km/năm,5715
