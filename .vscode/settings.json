@@ -1,0 +1,5 @@
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/COMM5000-M1/.venv/bin/python",
+  "python.venvFolders": ["COMM5000-M1"],
+  "jupyter.notebookFileRoot": "${fileDirname}"
+}
